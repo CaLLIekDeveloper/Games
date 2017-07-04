@@ -1,0 +1,20 @@
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.TicTacToe.resources
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\parsh\Desktop\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.TicTacToe.resources
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Panels.MenuGame.resources
+C:\Users\parsh\Desktop\Самоучеба\C# My Games\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Panels.MenuMain.resources
