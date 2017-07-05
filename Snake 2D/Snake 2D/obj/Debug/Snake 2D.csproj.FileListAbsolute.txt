@@ -1,0 +1,21 @@
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.exe.config
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.exe
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.pdb
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.csprojResolveAssemblyReference.cache
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.AboutForm.resources
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.MainForm.resources
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.Properties.Resources.resources
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.csproj.GenerateResource.Cache
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.exe
+C:\Users\parsh\Downloads\Snake-2D-master\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.pdb
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.exe.config
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.exe
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.pdb
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.exe
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\bin\Debug\Snake 2D.pdb
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.csprojResolveAssemblyReference.cache
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.MainForm.resources
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.Properties.Resources.resources
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake 2D.csproj.GenerateResource.Cache
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.MainMenuForm.resources
+C:\Users\parsh\Desktop\Курсовая\Snake-2D-master\Snake 2D\Snake 2D\obj\Debug\Snake_2D.Records.resources
