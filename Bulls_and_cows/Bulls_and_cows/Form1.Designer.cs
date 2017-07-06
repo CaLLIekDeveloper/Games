@@ -28,141 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lRand = new System.Windows.Forms.Label();
-            this.b1 = new System.Windows.Forms.Button();
-            this.b2 = new System.Windows.Forms.Button();
-            this.b3 = new System.Windows.Forms.Button();
-            this.b4 = new System.Windows.Forms.Button();
-            this.ok = new System.Windows.Forms.Button();
-            this.Score = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.newGame = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.главноеМенюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.новаяИграToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.правилаИгрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.авторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lRand
+            // mainPanel
             // 
-            this.lRand.AutoSize = true;
-            this.lRand.Location = new System.Drawing.Point(137, 30);
-            this.lRand.Name = "lRand";
-            this.lRand.Size = new System.Drawing.Size(0, 13);
-            this.lRand.TabIndex = 0;
+            this.mainPanel.Location = new System.Drawing.Point(0, 27);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(350, 400);
+            this.mainPanel.TabIndex = 0;
             // 
-            // b1
+            // menuStrip1
             // 
-            this.b1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.b1.Location = new System.Drawing.Point(12, 76);
-            this.b1.Name = "b1";
-            this.b1.Size = new System.Drawing.Size(66, 75);
-            this.b1.TabIndex = 1;
-            this.b1.Text = "1";
-            this.b1.UseVisualStyleBackColor = true;
-            this.b1.Click += new System.EventHandler(this.ButtonClick);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.главноеМенюToolStripMenuItem,
+            this.справкаToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(349, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // b2
+            // главноеМенюToolStripMenuItem
             // 
-            this.b2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.b2.Location = new System.Drawing.Point(84, 76);
-            this.b2.Name = "b2";
-            this.b2.Size = new System.Drawing.Size(66, 75);
-            this.b2.TabIndex = 2;
-            this.b2.Text = "0";
-            this.b2.UseVisualStyleBackColor = true;
-            this.b2.Click += new System.EventHandler(this.ButtonClick);
+            this.главноеМенюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.новаяИграToolStripMenuItem,
+            this.настройкиToolStripMenuItem,
+            this.выходToolStripMenuItem});
+            this.главноеМенюToolStripMenuItem.Name = "главноеМенюToolStripMenuItem";
+            this.главноеМенюToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.главноеМенюToolStripMenuItem.Text = "Главное меню";
             // 
-            // b3
+            // новаяИграToolStripMenuItem
             // 
-            this.b3.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.b3.Location = new System.Drawing.Point(156, 76);
-            this.b3.Name = "b3";
-            this.b3.Size = new System.Drawing.Size(66, 75);
-            this.b3.TabIndex = 3;
-            this.b3.Text = "0";
-            this.b3.UseVisualStyleBackColor = true;
-            this.b3.Click += new System.EventHandler(this.ButtonClick);
+            this.новаяИграToolStripMenuItem.Name = "новаяИграToolStripMenuItem";
+            this.новаяИграToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.новаяИграToolStripMenuItem.Text = "Новая игра";
+            this.новаяИграToolStripMenuItem.Click += new System.EventHandler(this.новаяИграToolStripMenuItem_Click);
             // 
-            // b4
+            // настройкиToolStripMenuItem
             // 
-            this.b4.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.b4.Location = new System.Drawing.Point(228, 76);
-            this.b4.Name = "b4";
-            this.b4.Size = new System.Drawing.Size(66, 75);
-            this.b4.TabIndex = 4;
-            this.b4.Text = "0";
-            this.b4.UseVisualStyleBackColor = true;
-            this.b4.Click += new System.EventHandler(this.ButtonClick);
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.настройкиToolStripMenuItem.Text = "Настройки";
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
-            // ok
+            // выходToolStripMenuItem
             // 
-            this.ok.Location = new System.Drawing.Point(94, 176);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(105, 23);
-            this.ok.TabIndex = 5;
-            this.ok.Text = "Готово";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
-            // Score
+            // справкаToolStripMenuItem
             // 
-            this.Score.AutoSize = true;
-            this.Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Score.Location = new System.Drawing.Point(139, 257);
-            this.Score.Name = "Score";
-            this.Score.Size = new System.Drawing.Size(45, 25);
-            this.Score.TabIndex = 8;
-            this.Score.Text = "0:0";
+            this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.правилаИгрыToolStripMenuItem,
+            this.авторToolStripMenuItem});
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.справкаToolStripMenuItem.Text = "Справка";
             // 
-            // pictureBox2
+            // правилаИгрыToolStripMenuItem
             // 
-            this.pictureBox2.Image = global::Bulls_and_cows.Properties.Resources.byk;
-            this.pictureBox2.Location = new System.Drawing.Point(186, 205);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(120, 131);
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
+            this.правилаИгрыToolStripMenuItem.Name = "правилаИгрыToolStripMenuItem";
+            this.правилаИгрыToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.правилаИгрыToolStripMenuItem.Text = "Правила игры";
+            this.правилаИгрыToolStripMenuItem.Click += new System.EventHandler(this.правилаИгрыToolStripMenuItem_Click);
             // 
-            // pictureBox1
+            // авторToolStripMenuItem
             // 
-            this.pictureBox1.Image = global::Bulls_and_cows.Properties.Resources.Корова;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 205);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 131);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // newGame
-            // 
-            this.newGame.Location = new System.Drawing.Point(109, 30);
-            this.newGame.Name = "newGame";
-            this.newGame.Size = new System.Drawing.Size(90, 29);
-            this.newGame.TabIndex = 9;
-            this.newGame.Text = "Новая игра";
-            this.newGame.UseVisualStyleBackColor = true;
-            this.newGame.Click += new System.EventHandler(this.newGame_Click);
+            this.авторToolStripMenuItem.Name = "авторToolStripMenuItem";
+            this.авторToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.авторToolStripMenuItem.Text = "Автор";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 352);
-            this.Controls.Add(this.newGame);
-            this.Controls.Add(this.Score);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.ok);
-            this.Controls.Add(this.b4);
-            this.Controls.Add(this.b3);
-            this.Controls.Add(this.b2);
-            this.Controls.Add(this.b1);
-            this.Controls.Add(this.lRand);
+            this.ClientSize = new System.Drawing.Size(349, 427);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bulls and Cows";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,16 +132,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lRand;
-        private System.Windows.Forms.Button b1;
-        private System.Windows.Forms.Button b2;
-        private System.Windows.Forms.Button b3;
-        private System.Windows.Forms.Button b4;
-        private System.Windows.Forms.Button ok;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label Score;
-        private System.Windows.Forms.Button newGame;
+        private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem главноеМенюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem новаяИграToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem правилаИгрыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem авторToolStripMenuItem;
     }
 }
 

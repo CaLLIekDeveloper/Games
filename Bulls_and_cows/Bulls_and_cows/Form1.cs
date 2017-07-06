@@ -7,118 +7,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bulls_and_cows.Menus;
 
 namespace Bulls_and_cows
 {
     public partial class Form1 : Form
     {
-        static public int[] randNumber = new int[4];
-        static public int[] myNumber = new int[4];
-        Random r = new Random();
-        int cows = 0;
-        int bulls = 0;
-        int step = 0;
-        int defeatStep = 10;
+        Menus.MainMenu mainMenu = new Menus.MainMenu();
+        GameMenu gameMenu = new GameMenu();
+        Menus.Settings settingsMenu = new Menus.Settings();
         public Form1()
         {
             InitializeComponent();
-            startGame();
-        }
-        private void startGame()
-        {
-            for (int i = 0; i < randNumber.Length; i++) randNumber[i] = r.Next(0, 9);
-            if (randNumber[0] == 0) randNumber[0] = 1;
-            for (int i = 0; i < randNumber.Length; i++) lRand.Text += randNumber[i].ToString();
-            newGame.Visible = false;
-            setButtons(true);
-            lRand.Visible = false;
+            _setMenu(mainMenu);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void _setMenu(Object temp)
         {
-
-        }
-        private void ButtonClick(object sender, EventArgs e)
-        {
-            Button b = (Button)sender;
-            int temp = int.Parse(b.Text);
-            temp++;
-            if (temp == 10) temp = 0;
-            b.Text = temp.ToString();
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(temp as Control);
         }
 
-        private void ok_Click(object sender, EventArgs e)
+        public Menus.MainMenu _getMainMenu()
         {
-            parse();
-            check();
-            setScore();
-            if (bulls == 4) endGame(true);
-            cows = 0;
-            bulls = 0;
-            step++;
-            if (step == defeatStep) endGame(false);
+            return mainMenu;
         }
 
-        private void setScore()
+        public GameMenu _getGameMenu()
         {
-            Score.Text = cows.ToString() + ":";
-            Score.Text += bulls.ToString();
+            return gameMenu;
         }
 
-        private void parse()
+        public Menus.Settings _getSettingsMenu()
         {
-            myNumber[0] = int.Parse(b1.Text);
-            myNumber[1] = int.Parse(b2.Text);
-            myNumber[2] = int.Parse(b3.Text);
-            myNumber[3] = int.Parse(b4.Text);
-        }
-        private void check()
-        {
-            for(int i=0; i<randNumber.Length; i++)
-            {
-                if (myNumber[i] == randNumber[i]) bulls++;
-            }
-
-            for (int i = 0; i < randNumber.Length; i++)
-                for (int j = 0; j < myNumber.Length; j++)
-                    if (randNumber[j] == myNumber[i]) cows++;
-        }
-        private void endGame(bool win)
-        {
-            if (win) MessageBox.Show("Поздравляю с победой.Вам потребовалоись "+step.ToString()+" ходов.", "Победа");
-            else
-                MessageBox.Show("Ничего повезет в другой раз", "Поражение");
-
-            setButtons(false);
-            newGame.Enabled = true;
-            newGame.Visible = true;
-           
+            return settingsMenu;
         }
 
-    private void setButtons(bool newStatus)
-    {
-        foreach (Control c in Controls)
+        private void новаяИграToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Button b = (Button)c;
-                b.Enabled = newStatus;
-            }
-            catch { }
+            _setMenu(gameMenu);
+            gameMenu._newGame();
         }
-    }
 
-        private void newGame_Click(object sender, EventArgs e)
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cows = 0; bulls = 0;
-            step = 0;
-            lRand.Text = "";
-            b1.Text = "0"; 
-            b2.Text = "0";
-            b3.Text = "0";
-            b4.Text = "0";
-            setScore();
-            startGame();
+            Application.Exit();
+        }
+
+        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.getApp()._setMenu(Program.getApp()._getSettingsMenu());
+        }
+
+        private void правилаИгрыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(this, "Суть игры: ваш соперник, будь то компьютер или друг, загадывает 4-значное число, состоящее из неповторяющихся цифр. Ваша задача - угадать его за ограниченное число ходов. В качестве подсказок выступают “коровы” (цифра угадана, но её позиция - нет) и “быки” (когда совпадает и цифра и её позиция). То есть если загадано число “1234”, а вы называете “6531”, то результатом будет 1 корова (цифра “1”) и 1 бык (цифра “3”) .", "Правила игры");
         }
     }
 }
