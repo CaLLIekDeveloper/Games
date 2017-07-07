@@ -39,6 +39,7 @@ namespace Bulls_and_cows.Menus
             Program.getApp()._getGameMenu()._setGameAgainstHuman(_returnTypeGameAgainstHuman());
             Properties.Settings.Default.Difficult = cbDifficult.SelectedIndex;
             Properties.Settings.Default.TypeGame = !_returnTypeGameAgainstHuman();
+            Program.getApp()._setMenu(Program.getApp()._getMainMenu());
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -38,7 +38,14 @@ namespace Bulls_and_cows.Menus
 
         private void startGame()
         {
-            if (!gameAgainstHuman) setNumbersFromComputer();
+            if (!gameAgainstHuman) _setNumbersFromComputer();
+            else
+            {
+                Forms.Player player = new Forms.Player();
+                player.Owner = Program.getApp();
+                //player.Parent = Program.getApp();
+                player.ShowDialog();
+            }
             
             for (int i = 0; i < randNumber.Length; i++) lRand.Text += randNumber[i].ToString();
             bNewGame.Visible = false;
@@ -46,7 +53,14 @@ namespace Bulls_and_cows.Menus
             lRand.Visible = false;
         }
 
-        private void setNumbersFromComputer()
+        public void _setNumbersFromHuman(int n1, int n2, int n3, int n4)
+        {
+            randNumber[0] = n1;
+            randNumber[1] = n2;
+            randNumber[2] = n3;
+            randNumber[3] = n4;
+        }
+        public void _setNumbersFromComputer()
         {
             int[] arr = new int[10];
             for (int i = 0; i < randNumber.Length; i++)
@@ -99,7 +113,7 @@ namespace Bulls_and_cows.Menus
 
         private void endGame(bool win)
         {
-            if (win) MessageBox.Show("Поздравляю с победой.Вам потребовалоись " + step.ToString() + " ходов.", "Победа");
+            if (win) MessageBox.Show("Поздравляю с победой. Вам потребовалось " + step.ToString() + " ходов.", "Победа");
             else
                 MessageBox.Show("Ничего повезет в другой раз", "Поражение");
 
@@ -131,6 +145,9 @@ namespace Bulls_and_cows.Menus
             b2.Text = "0";
             b3.Text = "0";
             b4.Text = "0";
+
+            defeatStep = Program.getApp()._getSettingsMenu()._getMaxSteps();
+            gameAgainstHuman = Program.getApp()._getSettingsMenu()._returnTypeGameAgainstHuman();
             setScore();
             startGame();
         }
@@ -153,13 +170,13 @@ namespace Bulls_and_cows.Menus
 
         private void bOk_Click_1(object sender, EventArgs e)
         {
+            step++;
             parse();
             check();
             setScore();
             if (bulls == 4) endGame(true);
             cows = 0;
             bulls = 0;
-            step++;
             if (step == defeatStep) endGame(false);
         }
     }

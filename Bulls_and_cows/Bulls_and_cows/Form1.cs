@@ -13,9 +13,9 @@ namespace Bulls_and_cows
 {
     public partial class Form1 : Form
     {
+        Menus.Settings settingsMenu = new Menus.Settings();
         Menus.MainMenu mainMenu = new Menus.MainMenu();
         GameMenu gameMenu = new GameMenu();
-        Menus.Settings settingsMenu = new Menus.Settings();
         public Form1()
         {
             InitializeComponent();

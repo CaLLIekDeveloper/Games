@@ -10,3 +10,4 @@ C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\obj\Release\Bu
 C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\obj\Release\Bulls_and_cows.csproj.GenerateResource.Cache
 C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\obj\Release\Bulls_and_cows.exe
 C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\obj\Release\Bulls_and_cows.pdb
+C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\obj\Release\Bulls_and_cows.Forms.Player.resources
