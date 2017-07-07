@@ -85,7 +85,7 @@ namespace Bulls_and_cows.Menus
             Score.Text = cows.ToString() + ":";
             Score.Text += bulls.ToString();
             if(step>0)Info.Text =
-                myNumber[0].ToString() + myNumber[1].ToString() + myNumber[2].ToString() + myNumber[3].ToString()
+                "Ход: "+step +"|   "+ myNumber[0].ToString() + myNumber[1].ToString() + myNumber[2].ToString() + myNumber[3].ToString()
                 + ": коров - " + cows.ToString() + ", быков - " + bulls.ToString();
         }
 
@@ -119,6 +119,7 @@ namespace Bulls_and_cows.Menus
             setButtons(false);
             bNewGame.Enabled = true;
             bNewGame.Visible = true;
+            Info.Text = "";
 
         }
 
