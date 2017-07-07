@@ -111,6 +111,7 @@
             this.авторToolStripMenuItem.Name = "авторToolStripMenuItem";
             this.авторToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.авторToolStripMenuItem.Text = "Автор";
+            this.авторToolStripMenuItem.Click += new System.EventHandler(this.авторToolStripMenuItem_Click);
             // 
             // Form1
             // 

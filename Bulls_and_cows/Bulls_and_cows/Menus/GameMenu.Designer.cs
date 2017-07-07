@@ -35,16 +35,17 @@
             this.b2 = new System.Windows.Forms.Button();
             this.b1 = new System.Windows.Forms.Button();
             this.lRand = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bOk = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Info = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // bNewGame
             // 
-            this.bNewGame.Location = new System.Drawing.Point(119, 139);
+            this.bNewGame.Location = new System.Drawing.Point(120, 162);
             this.bNewGame.Name = "bNewGame";
             this.bNewGame.Size = new System.Drawing.Size(90, 29);
             this.bNewGame.TabIndex = 19;
@@ -56,7 +57,7 @@
             // 
             this.Score.AutoSize = true;
             this.Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Score.Location = new System.Drawing.Point(153, 238);
+            this.Score.Location = new System.Drawing.Point(156, 292);
             this.Score.Name = "Score";
             this.Score.Size = new System.Drawing.Size(45, 25);
             this.Score.TabIndex = 18;
@@ -114,27 +115,9 @@
             this.lRand.Size = new System.Drawing.Size(0, 13);
             this.lRand.TabIndex = 10;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Bulls_and_cows.Properties.Resources.byk;
-            this.pictureBox2.Location = new System.Drawing.Point(208, 197);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(123, 132);
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Bulls_and_cows.Properties.Resources.Корова;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 188);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(140, 141);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
             // bOk
             // 
-            this.bOk.Location = new System.Drawing.Point(119, 139);
+            this.bOk.Location = new System.Drawing.Point(120, 162);
             this.bOk.Name = "bOk";
             this.bOk.Size = new System.Drawing.Size(90, 29);
             this.bOk.TabIndex = 20;
@@ -142,10 +125,38 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Bulls_and_cows.Properties.Resources.Корова;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 238);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Bulls_and_cows.Properties.Resources.byk;
+            this.pictureBox2.Location = new System.Drawing.Point(207, 238);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(140, 140);
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
+            // Info
+            // 
+            this.Info.AutoSize = true;
+            this.Info.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Info.Location = new System.Drawing.Point(36, 134);
+            this.Info.Name = "Info";
+            this.Info.Size = new System.Drawing.Size(0, 16);
+            this.Info.TabIndex = 21;
+            // 
             // GameMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Info);
             this.Controls.Add(this.bNewGame);
             this.Controls.Add(this.Score);
             this.Controls.Add(this.pictureBox2);
@@ -158,8 +169,8 @@
             this.Controls.Add(this.bOk);
             this.Name = "GameMenu";
             this.Size = new System.Drawing.Size(350, 400);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,13 +180,14 @@
 
         private System.Windows.Forms.Button bNewGame;
         private System.Windows.Forms.Label Score;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button b4;
         private System.Windows.Forms.Button b3;
         private System.Windows.Forms.Button b2;
         private System.Windows.Forms.Button b1;
         private System.Windows.Forms.Label lRand;
         private System.Windows.Forms.Button bOk;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label Info;
     }
 }

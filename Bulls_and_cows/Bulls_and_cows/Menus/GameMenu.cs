@@ -42,12 +42,11 @@ namespace Bulls_and_cows.Menus
             else
             {
                 Forms.Player player = new Forms.Player();
-                player.Owner = Program.getApp();
-                //player.Parent = Program.getApp();
                 player.ShowDialog();
+                //player = null;
             }
             
-            for (int i = 0; i < randNumber.Length; i++) lRand.Text += randNumber[i].ToString();
+            //for (int i = 0; i < randNumber.Length; i++) lRand.Text += randNumber[i].ToString();
             bNewGame.Visible = false;
             setButtons(true);
             lRand.Visible = false;
@@ -60,15 +59,16 @@ namespace Bulls_and_cows.Menus
             randNumber[2] = n3;
             randNumber[3] = n4;
         }
+
         public void _setNumbersFromComputer()
         {
-            int[] arr = new int[10];
+            int[] arr = new int[11];
             for (int i = 0; i < randNumber.Length; i++)
             {
                 while (true)
                 {
                     int newNumb = r.Next(0, 9);
-                    if (arr[randNumber[i]] == 0)
+                    if (arr[newNumb] == 0)
                     {
                         randNumber[i] = newNumb;
                         arr[randNumber[i]]++;
@@ -84,6 +84,9 @@ namespace Bulls_and_cows.Menus
         {
             Score.Text = cows.ToString() + ":";
             Score.Text += bulls.ToString();
+            if(step>0)Info.Text =
+                myNumber[0].ToString() + myNumber[1].ToString() + myNumber[2].ToString() + myNumber[3].ToString()
+                + ": коров - " + cows.ToString() + ", быков - " + bulls.ToString();
         }
 
         private void parse()
@@ -94,10 +97,6 @@ namespace Bulls_and_cows.Menus
             myNumber[3] = int.Parse(b4.Text);
         }
 
-        private void showMessageNotRepit()
-        {
-            MessageBox.Show(this, "Цифры не должны повторяться", "Ошибка");
-        }
 
         private void check()
         {
