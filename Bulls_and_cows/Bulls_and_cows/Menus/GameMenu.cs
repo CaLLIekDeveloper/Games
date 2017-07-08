@@ -179,5 +179,23 @@ namespace Bulls_and_cows.Menus
             bulls = 0;
             if (step == defeatStep) endGame(false);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            string path = @"C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\Resources\sound\wav\Корова.wav";
+            player.SoundLocation = path;
+            player.Load();
+            player.Play();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+            string path = @"C:\Users\parsh\Desktop\github\Games\Bulls_and_cows\Bulls_and_cows\Resources\sound\wav\Мычание-быка.wav";
+            player.SoundLocation = path;
+            player.Load();
+            player.Play();
+        }
     }
 }

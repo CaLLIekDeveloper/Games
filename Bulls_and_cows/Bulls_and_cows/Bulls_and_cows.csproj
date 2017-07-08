@@ -117,12 +117,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Корова.png" />
+    <None Include="Resources\img\Корова.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\byk.png" />
+    <None Include="Resources\img\byk.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\img\luxfon.com_9263.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\18132423.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img\1477668951_3d_grass_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\sound\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Корова.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
