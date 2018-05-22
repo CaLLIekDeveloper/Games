@@ -60,7 +60,7 @@ public class SettingsController : MonoBehaviour {
             showButton(imageColor, true);
             showButton(imageColor1, false);
         }
-        SaveLoadManager.Save();
+        DataManager.Save();
     }
 
     void showButton(Button buttonToShow, bool show)
@@ -107,13 +107,13 @@ public class SettingsController : MonoBehaviour {
                 
                 break;
         }
-        SaveLoadManager.Save();
+        DataManager.Save();
     }
 
     public void SetStandartSettings()
     {
         dropDown.value = 0;
         toggle.isOn = true;
-        SaveLoadManager.Save();
+        DataManager.Save();
     }
 }

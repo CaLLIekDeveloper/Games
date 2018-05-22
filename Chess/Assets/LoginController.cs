@@ -18,10 +18,11 @@ public class LoginController : MonoBehaviour {
     private Text WrongLogin;
     private Text WrongPassword;
 
-
-    // Use this for initialization
+    public Text WrongAccount;
 
     void Start () {
+
+        MainStatic.Main.player = new Player();
         //Screen.SetResolution(876,532,false);
         Debug.Log("Панелька количество дочерних элементов: " + transform.childCount);
         loginField = GameObject.Find("login").GetComponent<InputField>();
@@ -33,12 +34,28 @@ public class LoginController : MonoBehaviour {
         WrongLogin = GameObject.Find("WrongLogin").GetComponent<Text>();
         WrongPassword= GameObject.Find("WrongPassword").GetComponent<Text>();
         showButton(bR2, false);
-        MainStatic.Main.player = new Player();
+
         Account.Save();
 
         Account.Load();
-    }
 
+
+        loginField.onValueChanged.AddListener(delegate { ValueChangeLogin(); });
+        passwordField.onValueChanged.AddListener(delegate { ValueChangePassword(); });
+        WrongAccount.enabled = false;
+        WrongLogin.enabled = false;
+        WrongPassword.enabled = false;
+    }
+    public void ValueChangePassword()
+    {
+        WrongAccount.enabled = false;
+        WrongPassword.enabled = false;
+    }
+    public void ValueChangeLogin()
+    {
+        WrongAccount.enabled = false;
+        WrongLogin.enabled = false;
+    }
 
     void showButton(Button buttonToShow, bool show)
     {
@@ -56,21 +73,13 @@ public class LoginController : MonoBehaviour {
         }
     }
 
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
-    private void Awake()
-    {
-        
-    }
-
-
     public void _GetPlayer()
     {
         MainStatic.Main.player.isGuest = false;
-        if (IsNoNull()) MySceneManager.SetMainMenuScene();
+        if (IsNoNull())
+        {
+            if(HaveAccount())MySceneManager.SetMainMenuScene();
+        }
     }
 
     public void _GetGuest()
@@ -79,7 +88,6 @@ public class LoginController : MonoBehaviour {
         MainStatic.Main.player.password = "1";
         MainStatic.Main.player.isGuest = true;
         MySceneManager.SetMainMenuScene();
-        // Application.LoadLevel("temp.scene");
     }
 
     public void _GetNewUser()
@@ -96,84 +104,44 @@ public class LoginController : MonoBehaviour {
         if(IsNoNull())MySceneManager.SetMainMenuScene();
     }
 
-    public void _SaveSetings()
+    private void _SaveSetings()
     {
         ///todo
     }
-    public void _AddUser()
+    private void _AddUser()
     {
         ///todo
     }
 
-    public bool IsNoNull()
+    private bool IsNoNull()
     {
-        Debug.Log(loginField.text);
-        Debug.Log(passwordField.text);
-        string temp = loginField.text;
-        string temp1 = passwordField.text;
-        if(temp.Length>0&&temp1.Length>0)
+        if(loginField.text.Length>0&& passwordField.text.Length>0)
         {
-
-            MainStatic.Main.player.login = temp;
-            MainStatic.Main.player.password = temp1;
             return true;
         }else
-        if(temp.Length==0)
+        if(loginField.text.Length==0)
         {
-            WrongLogin.text = "Введіть логін";
+            WrongLogin.enabled = true;
         }
-        if(temp1.Length==0)
+        if(passwordField.text.Length==0)
         {
-            WrongPassword.text = "Введіть пароль";
+            WrongPassword.enabled = true;
         }
         return false;
     }
 
-}
-public class Account
-{
-    static string json;
-    static string playerDataPath = Application.dataPath + "/Data/Players.json";
-    static acc data = new acc();
-
-    public static bool Load()
+    private bool HaveAccount()
     {
-        Debug.Log("JSON LOAD: " + JsonUtility.ToJson(data,true));
-        json = File.ReadAllText(playerDataPath);
-        int charsCount = json.Length;
-        byte[] bytes = new byte[charsCount / 2];
-        for (int i = 0; i < charsCount; i += 2) bytes[i / 2] = Convert.ToByte(json.Substring(i, 2), 16);
-        string loadedData = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-
-        data = JsonUtility.FromJson<acc>(loadedData);
-        return true;
+        if (Account.HaveAccount(loginField.text, passwordField.text))
+        {
+            MainStatic.Main.player.login = loginField.text;
+            MainStatic.Main.player.password = passwordField.text;
+            
+            return true;
+        }
+        WrongAccount.enabled = true;
+        return false;
     }
 
-    public static bool Save()
-    {
-        if (data.login == null)
-        {
-            data.login = new List<string>();
-            data.password = new List<string>();
-            data.login.Add("CaLLIek");
-            data.password.Add("9530");
-        }
+}
 
-        Debug.Log("JSON SAVE: " + JsonUtility.ToJson(data,true));
-        if (!File.Exists(playerDataPath))
-        {
-            FileInfo fi = new FileInfo(playerDataPath);
-            fi.Create();
-        }
-        byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
-        string hex = BitConverter.ToString(bytes);
-        File.WriteAllText(playerDataPath, hex.Replace("-", ""));
-        return true;
-    }
-}
-[System.Serializable]
-public class acc
-{
-    public List<string> login;
-    public List<string> password;
-}

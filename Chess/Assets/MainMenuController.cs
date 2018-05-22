@@ -11,7 +11,7 @@ public class MainMenuController : MonoBehaviour {
     public static Chess shess;
     void Start()
     {
-        SaveLoadManager.Load();
+        DataManager.Load();
         bContinue = GameObject.Find("bContinue").GetComponent<Button>();
         Show();
     }
