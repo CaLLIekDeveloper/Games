@@ -2,7 +2,7 @@
 .DS_Store
 Library
 Library/*
-Exe
+/Exe
 Exe/*
 *.csproj
 *.sln
@@ -10,3 +10,4 @@ Exe/*
 Temp
 *.pidb
 Build
+/.vs
