@@ -33,7 +33,7 @@ public class Rules : MonoBehaviour
     static InputField log;
 
 
-
+    /*
     void OnEnable()
     {
         //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
@@ -44,6 +44,7 @@ public class Rules : MonoBehaviour
         //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
         SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
+    
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == 1)
@@ -60,6 +61,7 @@ public class Rules : MonoBehaviour
         }
        // if (scene.buildIndex == 2) 
     }
+    */
 
 
     private void Init()
@@ -78,19 +80,27 @@ public class Rules : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Создаю правила !!!!!!!!!!!!!!!!!!1");
         log = GameObject.Find("log").GetComponent<InputField>();
+        Main.stockFish = new StockFish();
     }
 
 
     // Use this for initialization
     void Start()
     {
+        /*
         if (Main.isCreate == false)
         {
+            
+            Main.chess = new Chess();
+            Main.scriptBoard = new ScriptBoard();
             Main.scriptBoard.ShowFigures(Main.chess);
+            
             Main.stockFish = new StockFish();
         }
         Main.isCreate = true;
+        */
         Init();
         audio = GetComponent<AudioSource>();
         /*

@@ -13,13 +13,13 @@ public class MainMenuController : MonoBehaviour {
     {
         SaveLoadManager.Load();
         bContinue = GameObject.Find("bContinue").GetComponent<Button>();
+        Show();
     }
 
     static public void Show()
     {
         if (PlayerPrefs.GetInt("isSave") == 1)
         {
-            
             showButton(bContinue, true);
         }
         else
@@ -42,7 +42,7 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
-
+    /*
     static public void _Continue()
     {
         IsContinue = true;
@@ -53,4 +53,5 @@ public class MainMenuController : MonoBehaviour {
         MainStatic.Main.player.typeGame = PlayerPrefs.GetInt("TypeGame");
         //MainStatic.Main.scriptBoard.ShowFigures(MainStatic.Main.chess);
     }
+    */
 }

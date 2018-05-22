@@ -26,23 +26,4 @@ public class Difficulty {
                 return "1";
         }
     }
-    public void SetFromString(string tempString)
-    {
-        if(tempString.Equals("1"))
-        {
-            skill = 1;
-        }
-        if (tempString.Equals("2"))
-        {
-            skill = 2;
-        }
-        if (tempString.Equals("3"))
-        {
-            skill = 3;
-        }
-        if (tempString.Equals("4"))
-        {
-            skill = 4;
-        }
-    }
 }

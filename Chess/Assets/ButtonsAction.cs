@@ -67,6 +67,6 @@ public class ButtonsAction : MonoBehaviour
 
     public void _Continue()
     {
-        MainMenuController._Continue();
+        //MainMenuController._Continue();
     }
 }

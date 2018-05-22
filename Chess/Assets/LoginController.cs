@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class LoginController : MonoBehaviour {
 
     private InputField loginField;
     private InputField passwordField;

@@ -49,12 +49,11 @@ public class MySceneManager : MonoBehaviour {
 
     public static void SetGameScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game_Scene");
     }
     public static void SetMainMenuScene()
     {
-        SceneManager.LoadScene(2);
-        //Application.LoadLevel("MainMenuScene");
+        SceneManager.LoadScene("MainMenuScene");
     }
     public static void SetSettingsScene()
     {
@@ -74,6 +73,6 @@ public class MySceneManager : MonoBehaviour {
     }
     public static void SetMainScene()
     {
-        SceneManager.LoadScene("mainScene");
+        SceneManager.LoadScene("Login_Scene");
     }
 }
