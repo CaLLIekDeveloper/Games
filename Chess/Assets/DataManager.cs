@@ -8,8 +8,13 @@ using System;
 public class DataManager
 {
     static string json;
-    static string playerDataPath = Application.dataPath + "/Resources/PlayerData.json";
+    static string playerDataPath;
     static data data = new data();
+
+    public static void SetPlayerDataPath()
+    {
+        playerDataPath = Application.dataPath + "/Resources/" + MainStatic.Main.player.login + ".json";
+    }
 
     static void GetData()
     {
@@ -18,13 +23,20 @@ public class DataManager
     }
     static void SetData()
     {
-        MainStatic.Main.player.difficulty.skill = data.playerDifficulty;
+        Debug.Log("Какого хуя" + data.playerDifficulty);
+        MainStatic.Main.player.difficulty.skill 
+            = data.playerDifficulty;
         MainStatic.Main.player.isWhite = data.playerIsWhite;
     }
 
     public static bool Load()
     {
-        CreateFile(playerDataPath);
+        if (playerDataPath == null) SetPlayerDataPath();
+        if(!CreateFile(playerDataPath))
+        {
+            Save();
+        }
+
         json = File.ReadAllText(playerDataPath);
         int charsCount = json.Length;
         byte[] bytes = new byte[charsCount / 2];
@@ -38,6 +50,7 @@ public class DataManager
 
     public static bool Save()
     {
+        if (playerDataPath == null) SetPlayerDataPath();
         GetData();
         CreateFile(playerDataPath);
         byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
@@ -46,26 +59,31 @@ public class DataManager
         return true;
     }
 
-    public static void CreateFile(string path)
+    public static bool CreateFile(string path)
     {
-        if(File.Exists(path))
+        if (File.Exists(path))
         {
-            return;
+            Debug.Log("Файл создан:  " + path);
+            return true;
         }
         else
         {
-            FileInfo f1 = new FileInfo(path);
-            f1.Create();
-            //File.Create(path);
+            System.IO.FileStream oFileStream = null;
+            oFileStream = new System.IO.FileStream(path, System.IO.FileMode.Create);
+            oFileStream.Close();
+            return false;
         }
     }
 }
+
+
 [System.Serializable]
 public class data
 {
     public bool playerIsWhite;
     public int playerDifficulty;
 }
+
 
 public class Account
 {
@@ -75,7 +93,10 @@ public class Account
 
     public static bool Load()
     {
-        DataManager.CreateFile(playerDataPath);
+        if(!DataManager.CreateFile(playerDataPath))
+        {
+            Save();
+        }
         json = File.ReadAllText(playerDataPath);
         Debug.Log("JSON LOAD: " + JsonUtility.ToJson(data, true));
 
@@ -94,6 +115,8 @@ public class Account
         {
             data.login = new List<string>();
             data.password = new List<string>();
+            data.login.Add("admin");
+            data.password.Add("admin");
         }
         DataManager.CreateFile(playerDataPath);
         Debug.Log("JSON SAVE: " + JsonUtility.ToJson(data, true));

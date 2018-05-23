@@ -13,6 +13,10 @@ public class Player {
     public Player()
     {
         typeGame = 0;
+        login = "temp";
+        password = "temp";
+        isGuest = false;
+        isWhite = true;
         difficulty = new Difficulty();
     }
 }

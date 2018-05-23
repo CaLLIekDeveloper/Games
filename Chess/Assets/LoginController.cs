@@ -238,6 +238,7 @@ public class LoginController : MonoBehaviour
     {
         MainStatic.Main.player.login = InputLogin.text;
         MainStatic.Main.player.password = InputPassword.text;
+        DataManager.Load();
     }
 }
 
