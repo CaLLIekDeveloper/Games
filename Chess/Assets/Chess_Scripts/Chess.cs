@@ -16,6 +16,7 @@ namespace MyGame
         List<string> allMovesString;
         public Chess(string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
         {
+            Debug.Log("Chess constructor fen: " + fen);
             this.fen = fen;
             board = new Board(fen);
             moves = new Moves(board);
@@ -333,7 +334,6 @@ namespace MyGame
                 if (fmTemp.from.y==6 || fmTemp.from.y==1)
                 {
                         FenPawn = fmTemp.from.PawnEnPassant();
-                    Debug.Log("FenPawn: " + FenPawn);
                 }
             }
             if (FenPawn.Length == 0) FenPawn = "-";

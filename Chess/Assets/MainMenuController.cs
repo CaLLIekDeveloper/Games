@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour {
     {
         bContinue = GameObject.Find("bContinue").GetComponent<Button>();
         Show();
-        DataManager.Load();
+        
     }
 
     static public void Show()
@@ -42,16 +42,10 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
-    /*
-    static public void _Continue()
+    
+    public void _Continue()
     {
         IsContinue = true;
-        shess = new MyGame.Chess(PlayerPrefs.GetString("SaveGame"));
         MySceneManager.SetGameScene();
-        Debug.Log("PlayerPrefs.GetString: " + PlayerPrefs.GetString("TypeGame"));
-        Debug.Log("PlayerPrefs.GetString(\"SaveGame\") : " + PlayerPrefs.GetString("SaveGame"));
-        MainStatic.Main.player.typeGame = PlayerPrefs.GetInt("TypeGame");
-        //MainStatic.Main.scriptBoard.ShowFigures(MainStatic.Main.chess);
     }
-    */
 }

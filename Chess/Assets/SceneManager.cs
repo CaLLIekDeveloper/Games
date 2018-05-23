@@ -8,7 +8,6 @@ public class MySceneManager : MonoBehaviour {
 
     static MySceneManager Instance;
     private static Button bR;
-    // Use this for initialization
     void Start () {
 		if(Instance != null)
         {

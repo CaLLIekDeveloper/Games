@@ -18,7 +18,6 @@ public class SettingsController : MonoBehaviour {
     SpriteRenderer tempSprite;
     bool isChange = false;
 
-	// Use this for initialization
 	void Start () {
         Debug.Log("LOL");
         toggle = GameObject.Find("Toggle").GetComponent<Toggle>();
@@ -42,10 +41,6 @@ public class SettingsController : MonoBehaviour {
     }
 
 
-    // Update is called once per frame
-    void Update () {
-	}
-
     public void Toggle_Changed(bool newValue)
     {
         if(toggle.isOn)
@@ -66,7 +61,7 @@ public class SettingsController : MonoBehaviour {
     void showButton(Button buttonToShow, bool show)
     {
         Image bImage = buttonToShow.GetComponent<Image>();
-        Text bText = buttonToShow.GetComponentInChildren<Text>(); //Text is a child of the Button
+        Text bText = buttonToShow.GetComponentInChildren<Text>();
 
         if (bImage != null)
         {
@@ -79,11 +74,7 @@ public class SettingsController : MonoBehaviour {
         }
     }
 
-    public void lol()
-    {
-        showButton(imageColor, false);
-        showButton(imageColor1, false);
-    }
+
 
     public void DropdownOnValueChange(Dropdown target)
     {

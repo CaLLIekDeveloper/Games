@@ -15,9 +15,9 @@ public class StockFish {
     public Process stockFish;
     public StockFish()
     {
-        UnityEngine.Debug.Log("StartStockFish(): ");
+        //UnityEngine.Debug.Log("StartStockFish(): ");
         string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "stockfish_9_x64.exe");
-        UnityEngine.Debug.Log("StartStockFish(): "+Environment.CurrentDirectory);
+        //UnityEngine.Debug.Log("StartStockFish(): "+Environment.CurrentDirectory);
 #if UNITY_EDITOR
         filePath = Environment.CurrentDirectory+@"\Assets\StreamingAssets\stockfish_9_x64.exe";
 #endif
@@ -41,15 +41,9 @@ public class StockFish {
         sendMessage("ucinewgame");
         sendMessage("setoption name Skill Level value 0");
     }
-    
-    bool StartStockFish()
-    {
-        return true;
-    }
 
     public void sendMessage(String msg)
     {
-        UnityEngine.Debug.Log("Отправляю сообщение: " + msg);
         stockFish.StandardInput.WriteLine(msg);
     }
     public void sendPlayerMove(String fen, String move)
@@ -60,32 +54,18 @@ public class StockFish {
         System.Threading.Thread.Sleep(150);
         
     }
-
-    void getMessage()
-    {
-
-    }
-
-    public void SetSkillLevel()
-    {
-        string Eazy = "setoption name Skill Level value 1";
-        string Normal = "setoption name Skill Level value 5";
-        string Hard = "setoption name Skill Level value 10";
-        string Insane = "setoption name Skill Level value 20";
-    }
-
     public string GetBestMove()
     {
         sendMessage(GetSkillLevel());
         while(true)
         {
             string temp = stockFish.StandardOutput.ReadLine();
-            UnityEngine.Debug.Log("stockFish.StandardOutput.ReadLine(): " + temp);
+            //UnityEngine.Debug.Log("stockFish.StandardOutput.ReadLine(): " + temp);
             string[] tempLine = temp.Split();
             if(tempLine[0]=="bestmove")
             {
                 string needMove = tempLine[1];
-                UnityEngine.Debug.Log("needMove: " + needMove);
+                //UnityEngine.Debug.Log("needMove: " + needMove);
                 return needMove;
             }
             if (temp == null) return null;

@@ -48,16 +48,28 @@ public class Rules : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Создаю правила !!!!!!!!!!!!!!!!!!1");
+
         log = GameObject.Find("log").GetComponent<InputField>();
         Main.stockFish = new StockFish();
     }
 
+    public void _ContinueGame(string fen)
+    {
+        Main.chess = new Chess(fen);
+        Main.chess.FindAllMoves();
+        Main.scriptBoard.ShowFigures(Main.chess);
+    }
 
     // Use this for initialization
     void Start()
     {
+        Debug.Log("Rules.Start()");
         Init();
+        if(MainMenuController.IsContinue)
+        {
+            _ContinueGame(PlayerPrefs.GetString("SaveGame"));
+            MainMenuController.IsContinue = false;
+        }
         audio = GetComponent<AudioSource>();
         /*
         Debug.Log("Main.typeGame: " +  Main.typeGame);
@@ -73,7 +85,7 @@ public class Rules : MonoBehaviour
             Main.chess.FindAllMoves();
             log.text = log.text + "Хід суперника: " + stockFishMove + "\r\n";
         }
-
+        Debug.Log("Rules.StartOnEnd()");
     }
 
     // Update is called once per frame
