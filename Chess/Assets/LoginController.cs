@@ -6,61 +6,90 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoginController : MonoBehaviour {
+public class LoginController : MonoBehaviour
+{
 
-    private InputField loginField;
-    private InputField passwordField;
+
     private Button bGuest;
     private Button bEnter;
     private Button bR;
     private Button bR2;
 
-    private Text WrongLogin;
-    private Text WrongPassword;
+    public Button ButtonGoToLoginFromRegistation;
 
-    public Text WrongAccount;
+    private Text TextWrongLogin;
+    private Text TextWrongPassword;
 
-    void Start () {
+    public Text TextWrongAccount;
+    public Text TextHaveLogin;
+    public Text TextSecondWrongPassword;
 
+
+    [SerializeField]
+    private InputField InputSecondPassword;
+    [SerializeField]
+    private InputField InputLogin;
+    [SerializeField]
+    private InputField InputPassword;
+
+    void Start()
+    {
         MainStatic.Main.player = new Player();
         //Screen.SetResolution(876,532,false);
-        Debug.Log("Панелька количество дочерних элементов: " + transform.childCount);
-        loginField = GameObject.Find("login").GetComponent<InputField>();
-        passwordField = GameObject.Find("password").GetComponent<InputField>();
+
         bGuest = GameObject.Find("bGuest").GetComponent<Button>();
         bEnter = GameObject.Find("bEnter").GetComponent<Button>();
         bR = GameObject.Find("bR").GetComponent<Button>();
         bR2 = GameObject.Find("bR2").GetComponent<Button>();
-        WrongLogin = GameObject.Find("WrongLogin").GetComponent<Text>();
-        WrongPassword= GameObject.Find("WrongPassword").GetComponent<Text>();
-        showButton(bR2, false);
+        TextWrongLogin = GameObject.Find("WrongLogin").GetComponent<Text>();
+        TextWrongPassword = GameObject.Find("WrongPassword").GetComponent<Text>();
 
-        Account.Save();
+        Hide();
+
+        InputLogin.onValueChanged.AddListener(delegate { ValueChangeLogin(); });
+        InputPassword.onValueChanged.AddListener(delegate { ValueChangePassword(); });
+        InputSecondPassword.onValueChanged.AddListener(delegate { ValueChangeSecondPassword(); });
 
         Account.Load();
-
-
-        loginField.onValueChanged.AddListener(delegate { ValueChangeLogin(); });
-        passwordField.onValueChanged.AddListener(delegate { ValueChangePassword(); });
-        WrongAccount.enabled = false;
-        WrongLogin.enabled = false;
-        WrongPassword.enabled = false;
     }
+
+    private void Hide()
+    {
+        showButton(bR2, false);
+        showButton(ButtonGoToLoginFromRegistation, false);
+
+        TextWrongAccount.enabled = false;
+        TextWrongLogin.enabled = false;
+        TextWrongPassword.enabled = false;
+        TextHaveLogin.enabled = false;
+        TextSecondWrongPassword.enabled = false;
+
+        showInput(InputSecondPassword, false);
+    }
+
+
+
     public void ValueChangePassword()
     {
-        WrongAccount.enabled = false;
-        WrongPassword.enabled = false;
+        TextWrongPassword.enabled = false;
+        TextHaveLogin.enabled = false;
     }
     public void ValueChangeLogin()
     {
-        WrongAccount.enabled = false;
-        WrongLogin.enabled = false;
+        TextWrongLogin.enabled = false;
+        TextHaveLogin.enabled = false;
+    }
+    public void ValueChangeSecondPassword()
+    {
+        TextHaveLogin.enabled = false;
+        if (InputPassword.text.Equals(InputSecondPassword.text))
+            TextSecondWrongPassword.enabled = false;
     }
 
     void showButton(Button buttonToShow, bool show)
     {
         Image bImage = buttonToShow.GetComponent<Image>();
-        Text bText = buttonToShow.GetComponentInChildren<Text>(); //Text is a child of the Button
+        Text bText = buttonToShow.GetComponentInChildren<Text>();
 
         if (bImage != null)
         {
@@ -73,12 +102,34 @@ public class LoginController : MonoBehaviour {
         }
     }
 
+    void showInput(InputField inputToShow, bool show)
+    {
+        Image bImage = inputToShow.GetComponent<Image>();
+        Text bText = inputToShow.GetComponentInChildren<Text>();
+
+        if (bImage != null)
+        {
+            bImage.enabled = show;
+        }
+
+        if (bText != null)
+        {
+            bText.enabled = show;
+        }
+
+        inputToShow.enabled = show;
+    }
+
     public void _GetPlayer()
     {
         MainStatic.Main.player.isGuest = false;
         if (IsNoNull())
         {
-            if(HaveAccount())MySceneManager.SetMainMenuScene();
+            if (HaveAccount())
+            {
+                SetPlayer();
+                MySceneManager.SetMainMenuScene();
+            }
         }
     }
 
@@ -92,56 +143,101 @@ public class LoginController : MonoBehaviour {
 
     public void _GetNewUser()
     {
-        showButton(bGuest, false);
-        showButton(bEnter, false);
-        showButton(bR, false);
-        showButton(bR2, true);
+        ShowHide(false);
+        TextHaveLogin.enabled = false;
+    }
+
+    private void ShowHide(bool temp)
+    {
+        showButton(bGuest, temp);
+        showButton(bEnter, temp);
+        showButton(bR, temp);
+        showButton(bR2, !temp);
+        showInput(InputSecondPassword, !temp);
+        showButton(ButtonGoToLoginFromRegistation, !temp);
     }
 
     public void _GetNewUser2()
     {
         MainStatic.Main.player.isGuest = false;
-        if(IsNoNull())MySceneManager.SetMainMenuScene();
+        IsNoNull();
+        if (InputPassword.text.Length == 0)
+        {
+            TextSecondWrongPassword.enabled = true;
+        }
+        else
+        {
+            if (IsNoNull())
+            {
+                if (InputPassword.text.Equals(InputSecondPassword.text))
+                {
+                    if (AddAccount())
+                    {
+                        SetPlayer();
+                        MySceneManager.SetMainMenuScene();
+                    }
+                    else
+                    {
+                        TextHaveLogin.enabled = true;
+                    }
+                }
+                else
+                {
+                    TextSecondWrongPassword.enabled = true;
+                }
+            }
+        }
     }
 
-    private void _SaveSetings()
+    public void _Back()
     {
-        ///todo
-    }
-    private void _AddUser()
-    {
-        ///todo
+        InputSecondPassword.text = "";
+        showButton(ButtonGoToLoginFromRegistation, false);
+        TextHaveLogin.enabled = false;
+        ShowHide(true);
     }
 
     private bool IsNoNull()
     {
-        if(loginField.text.Length>0&& passwordField.text.Length>0)
+        if (InputLogin.text.Length > 0 && InputPassword.text.Length > 0)
         {
             return true;
-        }else
-        if(loginField.text.Length==0)
-        {
-            WrongLogin.enabled = true;
         }
-        if(passwordField.text.Length==0)
+
+        if (InputLogin.text.Length == 0)
         {
-            WrongPassword.enabled = true;
+            TextWrongLogin.enabled = true;
+        }
+        if (InputPassword.text.Length == 0)
+        {
+            TextWrongPassword.enabled = true;
         }
         return false;
     }
+
 
     private bool HaveAccount()
     {
-        if (Account.HaveAccount(loginField.text, passwordField.text))
+        if (Account.HaveAccount(InputLogin.text, InputPassword.text))
         {
-            MainStatic.Main.player.login = loginField.text;
-            MainStatic.Main.player.password = passwordField.text;
-            
+            SetPlayer();
             return true;
         }
-        WrongAccount.enabled = true;
+        TextWrongAccount.enabled = true;
         return false;
     }
 
+    private bool AddAccount()
+    {
+        if (Account.AddAccount(InputLogin.text, InputPassword.text)) return true;
+        TextHaveLogin.enabled = true;
+        return false;
+    }
+
+    private void SetPlayer()
+    {
+        MainStatic.Main.player.login = InputLogin.text;
+        MainStatic.Main.player.password = InputPassword.text;
+    }
 }
 

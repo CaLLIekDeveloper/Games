@@ -1,5 +1,5 @@
 ObfuscateGlobally
-1
+0
 ObfuscateNamespace
 0
 ObfuscateClass

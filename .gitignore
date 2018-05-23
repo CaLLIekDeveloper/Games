@@ -11,3 +11,5 @@ Temp
 *.pidb
 Build
 /.vs
+Chess/.vs/Chess/v15/Server/sqlite3/storage.ide
+Chess/.vs/Chess/v15/.suo
