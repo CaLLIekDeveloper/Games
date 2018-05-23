@@ -127,11 +127,7 @@ namespace MyGame
                     nextBoard1.moveColor = Color.white;
                     nextChess = new Chess(nextBoard1);
                 }
-
-
             }
-
-
             return nextChess;
         }
 
@@ -326,11 +322,23 @@ namespace MyGame
                 sb.Replace(eight.Substring(0, j), j.ToString());
             return sb.ToString();
         }
+
         public void GenerateFen()
         {
-            fen = FenFigures() + " "
-                + (moveColor == Color.white ? "w" : "b") +" "+Castling.FenCastling()
-                +" - 0 " + moveNumber.ToString();
+    
+            string FenPawn = "";
+            FigureMoving fmTemp = new FigureMoving(Main.previousMove);
+            if(fmTemp.figure==Figure.blackPawn  || fmTemp.figure==Figure.whitePawn)
+            {
+                if (fmTemp.from.y==6 || fmTemp.from.y==1)
+                {
+                        FenPawn = fmTemp.from.PawnEnPassant();
+                    Debug.Log("FenPawn: " + FenPawn);
+                }
+            }
+            if (FenPawn.Length == 0) FenPawn = "-";
+            fen = FenFigures() + " " + (moveColor == Color.white ? "w" : "b") +" "+Castling.FenCastling()
+                +" "+ FenPawn + " 0 " + moveNumber.ToString();
         }
 
         bool CanEatKing()
@@ -452,10 +460,13 @@ namespace MyGame
 
         public FigureMoving(string move)
         {
-            this.figure = (Figure)move[0];
-            this.from = new Square(move.Substring(1, 2));
-            this.to = new Square(move.Substring(3, 2));
-            this.promotion = (move.Length == 6) ? (Figure)move[5] : Figure.none;
+            if (move != null)
+            {
+                this.figure = (Figure)move[0];
+                this.from = new Square(move.Substring(1, 2));
+                this.to = new Square(move.Substring(3, 2));
+                this.promotion = (move.Length == 6) ? (Figure)move[5] : Figure.none;
+            }
 
         }
 
@@ -815,6 +826,13 @@ namespace MyGame
         }
 
         public string Name { get { return ((char)('a' + x)).ToString() + (y + 1).ToString(); } }
+
+        public string PawnEnPassant()
+        {
+            if(this.y==1)
+            return ((char)('a' + x)).ToString() + (3).ToString(); 
+            return ((char)('a' + x)).ToString() + (6).ToString();
+        }
     }
     public static class Castling
     {
@@ -853,6 +871,7 @@ namespace MyGame
                 if (!isBlackRookMovesLeft)
                     temp += "q";
             }
+            if (temp.Length == 0) return "-";
             return temp;
         }
 
