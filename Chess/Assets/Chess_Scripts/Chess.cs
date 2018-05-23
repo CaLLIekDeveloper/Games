@@ -30,6 +30,7 @@ namespace MyGame
             moves = new Moves(board);
         }
 
+
         public Chess Move(String move)
         {
             FigureMoving fm = new FigureMoving(move);
@@ -82,23 +83,24 @@ namespace MyGame
                     Castling.isBlackKingMoves = true;
 
                 if (fm.from == new Square(0, 0))
-                    Castling.isWhiteRookMoves1 = true;
+                    Castling.isWhiteRookMovesLeft = true;
                 if (fm.from == new Square(7, 0))
-                    Castling.isWhiteRookMoves2 = true;
+                    Castling.isWhiteRookMovesRight = true;
 
                 if (fm.to == new Square(0, 0))
-                    Castling.isWhiteRookMoves1 = true;
+                    Castling.isWhiteRookMovesLeft = true;
                 if (fm.to == new Square(7, 0))
-                    Castling.isWhiteRookMoves2 = true;
+                    Castling.isWhiteRookMovesRight = true;
+
 
                 if (fm.from == new Square(0, 7))
-                    Castling.isBlackRookMoves1 = true;
+                    Castling.isBlackRookMovesLeft = true;
                 if (fm.from == new Square(7, 7))
-                    Castling.isBlackRookMoves2 = true;
+                    Castling.isBlackRookMovesRight = true;
                 if (fm.to == new Square(0, 7))
-                    Castling.isBlackRookMoves1 = true;
+                    Castling.isBlackRookMovesLeft = true;
                 if (fm.to == new Square(7, 7))
-                    Castling.isBlackRookMoves2 = true;
+                    Castling.isBlackRookMovesRight = true;
 
                 if (fm.ToString() == "Ke1g1")
                 {
@@ -327,7 +329,8 @@ namespace MyGame
         public void GenerateFen()
         {
             fen = FenFigures() + " "
-                + (moveColor == Color.white ? "w" : "b") + " - - 0 " + moveNumber.ToString();
+                + (moveColor == Color.white ? "w" : "b") +" "+Castling.FenCastling()
+                +" - 0 " + moveNumber.ToString();
         }
 
         bool CanEatKing()
@@ -552,7 +555,7 @@ namespace MyGame
         }
         private bool CanKWhiteKingMove()
         {
-            if (!Castling.isWhiteKingMoves && !Castling.isWhiteRookMoves1)
+            if (!Castling.isWhiteKingMoves && !Castling.isWhiteRookMovesLeft)
             {
                 //Debug.Log("Можно сделать рокировку на c1");
                 if (fm.to == new Square(2, 0))
@@ -571,7 +574,7 @@ namespace MyGame
                 }
             }
 
-            if (!Castling.isWhiteKingMoves && !Castling.isWhiteRookMoves2)
+            if (!Castling.isWhiteKingMoves && !Castling.isWhiteRookMovesRight)
                 if (fm.to == new Square(6, 0))
                 {
                     if (board.GetFigureAt(new Square(5, 0)) == Figure.none && board.GetFigureAt(new Square(6, 0)) == Figure.none)
@@ -593,7 +596,7 @@ namespace MyGame
 
         private bool CanBlackKingMove()
         {
-            if (!Castling.isBlackKingMoves && !Castling.isBlackRookMoves1)
+            if (!Castling.isBlackKingMoves && !Castling.isBlackRookMovesLeft)
             {
                 if (fm.to == new Square(2, 7))
                 {
@@ -610,7 +613,7 @@ namespace MyGame
                 }
             }
 
-            if (!Castling.isBlackKingMoves && !Castling.isBlackRookMoves2)
+            if (!Castling.isBlackKingMoves && !Castling.isBlackRookMovesRight)
                 if (fm.to == new Square(6, 7))
                 {
                     if (board.GetFigureAt(new Square(5, 7)) == Figure.none && board.GetFigureAt(new Square(6, 7)) == Figure.none)
@@ -817,18 +820,40 @@ namespace MyGame
     {
         static public bool isWhiteKingMoves = false;
         static public bool isBlackKingMoves = false;
-        static public bool isWhiteRookMoves1 = false;
-        static public bool isWhiteRookMoves2 = false;
-        static public bool isBlackRookMoves1 = false;
-        static public bool isBlackRookMoves2 = false;
+        static public bool isWhiteRookMovesLeft = false;
+        static public bool isWhiteRookMovesRight = false;
+        static public bool isBlackRookMovesLeft = false;
+        static public bool isBlackRookMovesRight = false;
         static public void Default()
         {
             isWhiteKingMoves = false;
             isBlackKingMoves = false;
-            isWhiteRookMoves1 = false;
-            isWhiteRookMoves2 = false;
-            isBlackRookMoves1 = false;
-            isBlackRookMoves2 = false;
+            isWhiteRookMovesLeft = false;
+            isWhiteRookMovesRight = false;
+            isBlackRookMovesLeft = false;
+            isBlackRookMovesRight = false;
+        }
+
+        static public string FenCastling()
+        {
+            string temp = "";
+            if (!isWhiteKingMoves)
+            {
+                if (!isWhiteRookMovesRight)
+                    temp += "K";
+
+                if (!isWhiteRookMovesLeft)
+                    temp += "Q";
+            }
+            if (!isBlackKingMoves)
+            {
+                if (!isBlackRookMovesRight)
+                    temp += "k";
+
+                if (!isBlackRookMovesLeft)
+                    temp += "q";
+            }
+            return temp;
         }
 
 

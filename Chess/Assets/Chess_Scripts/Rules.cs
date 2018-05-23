@@ -32,38 +32,6 @@ public class Rules : MonoBehaviour
 
     static InputField log;
 
-
-    /*
-    void OnEnable()
-    {
-        //Tell our 'OnLevelFinishedLoading' function to start listening for a scene change as soon as this script is enabled.
-        SceneManager.sceneLoaded += OnLevelFinishedLoading;
-    }
-    void OnDisable()
-    {
-        //Tell our 'OnLevelFinishedLoading' function to stop listening for a scene change as soon as this script is disabled. Remember to always have an unsubscription for every delegate you subscribe to!
-        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
-    }
-    
-    void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == 1)
-        {
-            if (!MainMenuController.IsContinue)
-                RestartGame();
-            else
-            {
-                Debug.Log("Что за хуйня блять ");
-                Main.chess = MainMenuController.shess;
-                Main.scriptBoard.ShowFigures(Main.chess);
-                MainMenuController.IsContinue = false;
-            }
-        }
-       // if (scene.buildIndex == 2) 
-    }
-    */
-
-
     private void Init()
     {
         Main.dragAndDrop = new DragAndDrop();
@@ -89,18 +57,6 @@ public class Rules : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        /*
-        if (Main.isCreate == false)
-        {
-            
-            Main.chess = new Chess();
-            Main.scriptBoard = new ScriptBoard();
-            Main.scriptBoard.ShowFigures(Main.chess);
-            
-            Main.stockFish = new StockFish();
-        }
-        Main.isCreate = true;
-        */
         Init();
         audio = GetComponent<AudioSource>();
         /*
@@ -126,7 +82,6 @@ public class Rules : MonoBehaviour
         if (Main.dragAndDrop.Action())
         {
             audio.Play();
-            //audio.PlayOneShot(soundStep, 0.7F); ;
             string from = GetSquare(Main.dragAndDrop.pickPosition);
             string to = GetSquare(Main.dragAndDrop.dropPosition);
             string figure = Main.chess.GetFigureAt(from).ToString();
@@ -135,58 +90,66 @@ public class Rules : MonoBehaviour
             if (Main.previousMove == null) Main.previousMove = move;
             Main.chess = Main.chess.Move(move);
 
-            if (from != to)
-            {
-                if(Main.player.typeGame ==1)
-                log.text = log.text + "Ваш хід:            " + from + to + "\r\n";
-                else
-                {
-                    string temp = "";
-                    if (!Main.chess.isWhiteStep()) temp += "Хід білих:    ";
-                    else
-                        temp += "Хід чорних: ";
-                    log.text = log.text + temp + from + to + "\r\n";
-                }
-            }
+
+            AddMoveInLog(from, to);
             if (from != to && Main.previousMove != move)
             {
                 Main.previousMove = move;
             }
 
             Main.scriptBoard.ShowFigures(Main.chess);
-
-            //Debug.Log("Computer step: " + !Main.chess.isWhiteStep());
-            //Debug.Log("Computer step: "+ai.GetBestMove());
-
-            if (Main.player.typeGame == 1 && (Main.player.isWhite==!Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
-            {
-                Main.chess.FindAllMoves();
-                SheckEndGame();
-
-                Debug.Log(Main.chess.fen);
-                Main.stockFish.sendPlayerMove(Main.chess.fen,from+to);
-                string stockFishMove = Main.stockFish.GetBestMove();
-                if (stockFishMove != null)
-                {
-                    log.text = log.text +"Хід суперника: "+ stockFishMove + "\r\n";
-                    //Main.chess.FindAllMoves();
-                    Main.stockFish.sendMessage("setoption name Skill Level value 0");
-                    //Main.stockFish.sendPlayerMove(stockFishMove);
-                    Main.chess = Main.chess.Move("" + (Char)Main.chess.GetFigureAt(stockFishMove[0].ToString() + stockFishMove[1].ToString()) + stockFishMove);
-                    Main.scriptBoard.ShowFigures(Main.chess);
-                }
-                else
-                {
-                    Debug.Log("Ошибка StockFish: ");
-                }
-            }
-            Main.chess.FindAllMoves();
-            if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity >0)
-            {
-                Main.scriptBoard.MarkValidFigures(Main.chess);
-            }
+            ComputerMove(from,to);
             SheckEndGame();
 
+        }
+    }
+
+    private void AddMoveInLog(string from, string to)
+    {
+        if (from != to)
+        {
+            if (Main.player.typeGame == 1)
+                log.text = log.text + "Ваш хід:            " + from + to + "\r\n";
+            else
+            {
+                string temp = "";
+                if (!Main.chess.isWhiteStep()) temp += "Хід білих:    ";
+                else
+                    temp += "Хід чорних: ";
+                log.text = log.text + temp + from + to + "\r\n";
+            }
+        }
+
+    }
+
+    private void ComputerMove(string from, string to)
+    {
+        if (Main.player.typeGame == 1 && (Main.player.isWhite == !Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
+        {
+            Main.chess.FindAllMoves();
+            SheckEndGame();
+
+            Debug.Log(Main.chess.fen);
+            Main.stockFish.sendPlayerMove(Main.chess.fen, from + to);
+            string stockFishMove = Main.stockFish.GetBestMove();
+            if (stockFishMove != null)
+            {
+                log.text = log.text + "Хід суперника: " + stockFishMove + "\r\n";
+                //Main.chess.FindAllMoves();
+                Main.stockFish.sendMessage("setoption name Skill Level value 0");
+                //Main.stockFish.sendPlayerMove(stockFishMove);
+                Main.chess = Main.chess.Move("" + (Char)Main.chess.GetFigureAt(stockFishMove[0].ToString() + stockFishMove[1].ToString()) + stockFishMove);
+                Main.scriptBoard.ShowFigures(Main.chess);
+            }
+            else
+            {
+                Debug.Log("Ошибка StockFish: ");
+            }
+        }
+        Main.chess.FindAllMoves();
+        if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity > 0)
+        {
+            Main.scriptBoard.MarkValidFigures(Main.chess);
         }
     }
 
@@ -194,19 +157,40 @@ public class Rules : MonoBehaviour
     {
         if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity == 0)
         {
-            if(Main.player.isWhite && Main.chess.isWhiteStep())
-            Invoke("LoseWhite", 2);
-            else
-            if (!Main.player.isWhite && !Main.chess.isWhiteStep())
-                Invoke("LoseBlack", 2);
-            else
-                Invoke("WinBlack", 2);
+            Debug.Log("isWhite: "+ Main.player.isWhite);
+            Debug.Log("Main.chess.isWhiteStep(): " + Main.chess.isWhiteStep());
 
+            if (Main.player.isWhite)
+            {
+                if (Main.chess.isWhiteStep())
+                {
+                    Invoke("LoseWhite", 2);
+                }
+                else
+                {
+                    Invoke("WinWhite", 2);
+                }
+            }
+            else
+            //if (!Main.player.isWhite)
+            {
+                if (Main.chess.isWhiteStep())
+                {
+                    Invoke("WinBlack", 2);
+                }
+                else
+                {
+                    Invoke("LoseWhite", 2);
+                }
+            }
+            return;
         }
-        if (Main.chess.GetAllMoves().Capacity == 0)
+        
+        if (Main.chess.GetAllMoves().Capacity == 0 || Main.CountSteps>100)
         {
             Invoke("Pat", 2);
         }
+        
     }
 
     string GetSquare(Vector2 position)
@@ -221,6 +205,8 @@ public class Rules : MonoBehaviour
         Init();
     }
 
+
+
     private void LoseWhite()
     {
         MySceneManager.SetLoseScene();
@@ -229,6 +215,8 @@ public class Rules : MonoBehaviour
     {
         MySceneManager.SetLoseScene();
     }
+
+
     private void WinWhite()
     {
         MySceneManager.SetWinScene();
@@ -237,6 +225,8 @@ public class Rules : MonoBehaviour
     {
         MySceneManager.SetLoseScene();
     }
+
+
     private void Pat()
     {
         MySceneManager.SetLoseScene();
