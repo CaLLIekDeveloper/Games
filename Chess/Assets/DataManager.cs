@@ -8,7 +8,7 @@ using System;
 public class DataManager
 {
     static string json;
-    static string playerDataPath = Application.dataPath + "/Data/PlayerData.json";
+    static string playerDataPath = Application.dataPath + "/Resources/PlayerData.json";
     static data data = new data();
 
     static void GetData()
@@ -24,6 +24,7 @@ public class DataManager
 
     public static bool Load()
     {
+        CreateFile(playerDataPath);
         json = File.ReadAllText(playerDataPath);
         int charsCount = json.Length;
         byte[] bytes = new byte[charsCount / 2];
@@ -38,15 +39,25 @@ public class DataManager
     public static bool Save()
     {
         GetData();
-        if (!File.Exists(playerDataPath))
-        {
-            FileInfo fi = new FileInfo(playerDataPath);
-            fi.Create();
-        }
+        CreateFile(playerDataPath);
         byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
         string hex = BitConverter.ToString(bytes);
         File.WriteAllText(playerDataPath, hex.Replace("-",""));
         return true;
+    }
+
+    public static void CreateFile(string path)
+    {
+        if(File.Exists(path))
+        {
+            return;
+        }
+        else
+        {
+            FileInfo f1 = new FileInfo(path);
+            f1.Create();
+            //File.Create(path);
+        }
     }
 }
 [System.Serializable]
@@ -59,13 +70,15 @@ public class data
 public class Account
 {
     static string json;
-    static string playerDataPath = Application.dataPath + "/Data/Players.json";
+    public static string playerDataPath = Application.dataPath + "/Resources/Players.json";
     static acc data = new acc();
 
     public static bool Load()
     {
-        Debug.Log("JSON LOAD: " + JsonUtility.ToJson(data, true));
+        DataManager.CreateFile(playerDataPath);
         json = File.ReadAllText(playerDataPath);
+        Debug.Log("JSON LOAD: " + JsonUtility.ToJson(data, true));
+
         int charsCount = json.Length;
         byte[] bytes = new byte[charsCount / 2];
         for (int i = 0; i < charsCount; i += 2) bytes[i / 2] = Convert.ToByte(json.Substring(i, 2), 16);
@@ -81,16 +94,9 @@ public class Account
         {
             data.login = new List<string>();
             data.password = new List<string>();
-            data.login.Add("CaLLIek");
-            data.password.Add("9530");
         }
-
+        DataManager.CreateFile(playerDataPath);
         Debug.Log("JSON SAVE: " + JsonUtility.ToJson(data, true));
-        if (!File.Exists(playerDataPath))
-        {
-            FileInfo fi = new FileInfo(playerDataPath);
-            fi.Create();
-        }
         byte[] bytes = Encoding.UTF8.GetBytes(JsonUtility.ToJson(data));
         string hex = BitConverter.ToString(bytes);
         File.WriteAllText(playerDataPath, hex.Replace("-", ""));
@@ -103,6 +109,18 @@ public class Account
         {
             if (data.password[data.login.IndexOf(login)].Equals(password))
                 return true;
+        }
+        return false;
+    }
+
+    public static bool AddAccount(string login, string password)
+    {
+        if (!data.login.Contains(login))
+        {
+            data.login.Add(login);
+            data.password.Add(password);
+            Save();
+            return true;
         }
         return false;
     }
