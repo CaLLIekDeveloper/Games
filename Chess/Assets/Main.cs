@@ -14,9 +14,7 @@ namespace MainStatic{
         public static int CountSteps { get; set; }
         public static StockFish stockFish { get; set; }
 
-        //public static string NowScene { get; set; }
+        public static string NowScene { get; set; }
         public static Player player { get; set; }
-
-        public static SoundManager soundManager { get; set; }
     }
 }
