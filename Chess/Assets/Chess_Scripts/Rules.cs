@@ -17,7 +17,7 @@ using UnityEngine.SceneManagement;
 //UPD 06.06.2018
 //Add user greeting
 //Доделать меню настройек (sound on or off, select resolution)
-//Добавить в генерацию ФЕН информацию о рокировке и о взятии на проходе ++
+//Добавить в генерацию ФЕН информацию о рокировке и о взятии на проходе
 //Добавить в настройки выбор игры по времени
 //Добавить название полей в шахматное поле ++
 //
@@ -25,13 +25,12 @@ using UnityEngine.SceneManagement;
 public class Rules : MonoBehaviour
 {
     AI ai = new AI();
+    bool blackIsAI = true;
+    bool firstStepAi = true;
     public static AudioClip soundStep;
     public static AudioSource audio;
 
     static InputField log;
-
-
-    private bool IsWhitePlayerTemp;
 
     private void Init()
     {
@@ -44,11 +43,12 @@ public class Rules : MonoBehaviour
         Main.chess.FindAllMoves();
         Main.scriptBoard.ShowFigures(Main.chess);
         log.text = "";
-        IsWhitePlayerTemp = Main.player.isWhite;
+        firstStepAi = false;
     }
 
     private void Awake()
     {
+
         log = GameObject.Find("log").GetComponent<InputField>();
         Main.stockFish = new StockFish();
     }
@@ -58,43 +58,34 @@ public class Rules : MonoBehaviour
         Main.chess = new Chess(fen);
         Main.chess.FindAllMoves();
         Main.scriptBoard.ShowFigures(Main.chess);
-        IsWhitePlayerTemp = bool.Parse(PlayerPrefs.GetString("PlayerIsWhite"));
-
-
-        Debug.Log("FEN: " + fen);
-        Debug.Log("IsWhitePlayerTemp: " + IsWhitePlayerTemp);
-        Debug.Log("Main.chess.isWhiteStep() : " + Main.chess.isWhiteStep());
     }
 
+    // Use this for initialization
     void Start()
     {
-        
+        Debug.Log("Rules.Start()");
         Init();
-        Debug.Log("Start()IsWhitePlayerTemp: " + IsWhitePlayerTemp);
-        if (MainMenuController.IsContinue)
+        if(MainMenuController.IsContinue)
         {
             _ContinueGame(PlayerPrefs.GetString("SaveGame"));
             MainMenuController.IsContinue = false;
         }
-        else
-            FirstStemComputer();
         audio = GetComponent<AudioSource>();
-        
-    }
+        /*
+        Debug.Log("Main.typeGame: " +  Main.typeGame);
+        Debug.Log("Main.player.isWhite : " + Main.player.isWhite);
+        Debug.Log("firstStepAi : " + firstStepAi);
+        */
 
-    void FirstStemComputer()
-    {
-        if (Main.player.typeGame == 1)
+        if (Main.player.typeGame==1 && !Main.player.isWhite)
         {
-            if (IsWhitePlayerTemp != Main.chess.isWhiteStep())
-            {
-                string stockFishMove = Main.stockFish.GetBestMove();
-                Main.chess = Main.chess.Move("" + (Char)Main.chess.GetFigureAt(stockFishMove[0].ToString() + stockFishMove[1].ToString()) + stockFishMove);
-                Main.scriptBoard.ShowFigures(Main.chess);
-                Main.chess.FindAllMoves();
-                log.text = log.text + "Хід суперника: " + stockFishMove + "\r\n";
-            }
+            string stockFishMove = Main.stockFish.GetBestMove();
+            Main.chess = Main.chess.Move("" + (Char)Main.chess.GetFigureAt(stockFishMove[0].ToString() + stockFishMove[1].ToString()) + stockFishMove);
+            Main.scriptBoard.ShowFigures(Main.chess);
+            Main.chess.FindAllMoves();
+            log.text = log.text + "Хід суперника: " + stockFishMove + "\r\n";
         }
+        Debug.Log("Rules.StartOnEnd()");
     }
 
     // Update is called once per frame
@@ -145,10 +136,11 @@ public class Rules : MonoBehaviour
 
     private void ComputerMove(string from, string to)
     {
-        if (Main.player.typeGame == 1 && (IsWhitePlayerTemp == !Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
+        if (Main.player.typeGame == 1 && (Main.player.isWhite == !Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
         {
             Main.chess.FindAllMoves();
-            if (SheckEndGame()) return;
+            SheckEndGame();
+
             Debug.Log(Main.chess.fen);
             Main.stockFish.sendPlayerMove(Main.chess.fen, from + to);
             string stockFishMove = Main.stockFish.GetBestMove();
@@ -173,14 +165,14 @@ public class Rules : MonoBehaviour
         }
     }
 
-    bool SheckEndGame()
+    void SheckEndGame()
     {
         if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity == 0)
         {
-            Debug.Log("isWhite: "+ IsWhitePlayerTemp);
+            Debug.Log("isWhite: "+ Main.player.isWhite);
             Debug.Log("Main.chess.isWhiteStep(): " + Main.chess.isWhiteStep());
 
-            if (IsWhitePlayerTemp)
+            if (Main.player.isWhite)
             {
                 if (Main.chess.isWhiteStep())
                 {
@@ -203,15 +195,13 @@ public class Rules : MonoBehaviour
                     Invoke("LoseWhite", 2);
                 }
             }
-            return true;
+            return;
         }
         
         if (Main.chess.GetAllMoves().Capacity == 0 || Main.CountSteps>100)
         {
             Invoke("Pat", 2);
-            return true;
         }
-        return false;
         
     }
 

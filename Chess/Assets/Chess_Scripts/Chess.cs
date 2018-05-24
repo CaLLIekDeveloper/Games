@@ -32,8 +32,13 @@ namespace MyGame
         }
 
 
-        private Chess CheckPawnAtBorder(FigureMoving fm)
+        public Chess Move(String move)
         {
+            FigureMoving fm = new FigureMoving(move);
+            if (!moves.CanMove(fm))
+                return this;
+            if (board.IsCheckAfterMove(fm))
+                return this;
             Board nextBoard;
             Chess nextChess;
 
@@ -67,11 +72,10 @@ namespace MyGame
                     return nextChess;
                 }
             }
-            return null;
-        }
 
-        private void CheckIfMoveRemoveCastling(FigureMoving fm)
-        {
+            nextBoard = board.Move(fm);
+            nextChess = new Chess(nextBoard);
+
             if (fm.from != fm.to)
             {
                 if (fm.figure == Figure.whiteKing)
@@ -98,30 +102,7 @@ namespace MyGame
                     Castling.isBlackRookMovesLeft = true;
                 if (fm.to == new Square(7, 7))
                     Castling.isBlackRookMovesRight = true;
-            }
-        }
 
-        public Chess Move(String move)
-        {
-            FigureMoving fm = new FigureMoving(move);
-            if (!moves.CanMove(fm))
-                return this;
-            if (board.IsCheckAfterMove(fm))
-                return this;
-            Board nextBoard;
-            Chess nextChess;
-
-
-            //Изменение пешки на королеву если она дошла до конца доски
-            Chess tempChess = CheckPawnAtBorder(fm);
-            if (tempChess != null) return tempChess;
-
-            nextBoard = board.Move(fm);
-            nextChess = new Chess(nextBoard);
-
-            CheckIfMoveRemoveCastling(fm);
-            if (fm.from != fm.to)
-            {
                 if (fm.ToString() == "Ke1g1")
                 {
                     Board nextBoard1 = nextBoard.Move(new FigureMoving("Rh1f1"));
@@ -148,6 +129,48 @@ namespace MyGame
                     nextChess = new Chess(nextBoard1);
                 }
             }
+            return nextChess;
+        }
+
+
+        public Chess UndoMove(String move, Figure figure)
+        {
+            String tempMove = "" + move[0] + move[3] + move[4] + move[1] + move[2];
+            FigureMoving fm = new FigureMoving(tempMove);
+            Board nextBoard;
+            Chess nextChess;
+            nextBoard = board.Move(fm);
+            if (figure != Figure.none) nextBoard.SetFigureAt(fm.from, figure);
+            nextChess = new Chess(nextBoard);
+            /*
+            if (fm.from != fm.to)
+            {
+                if (fm.figure == Figure.whiteKing)
+                    Castling.isWhiteKingMoves = true;
+                if (fm.figure == Figure.blackKing)
+                    Castling.isBlackKingMoves = true;
+
+                if (fm.from == new Square(0, 0))
+                    Castling.isWhiteRookMoves1 = true;
+                if (fm.from == new Square(7, 0))
+                    Castling.isWhiteRookMoves2 = true;
+
+                if (fm.to == new Square(0, 0))
+                    Castling.isWhiteRookMoves1 = true;
+                if (fm.to == new Square(7, 0))
+                    Castling.isWhiteRookMoves2 = true;
+
+                if (fm.from == new Square(0, 7))
+                    Castling.isBlackRookMoves1 = true;
+                if (fm.from == new Square(7, 7))
+                    Castling.isBlackRookMoves2 = true;
+                if (fm.to == new Square(0, 7))
+                    Castling.isBlackRookMoves1 = true;
+                if (fm.to == new Square(7, 7))
+                    Castling.isBlackRookMoves2 = true;
+            }
+            */
+
 
             return nextChess;
         }
@@ -238,6 +261,7 @@ namespace MyGame
             InitFigures(parts[0]);
             moveColor = parts[1] == "b" ? Color.black : Color.white;
             moveNumber = int.Parse(parts[5]);
+            moveColor = Color.white;
         }
 
         void InitFigures(string data)

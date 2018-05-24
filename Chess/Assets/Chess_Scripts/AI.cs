@@ -66,7 +66,7 @@ public class AI {
                 _localChess = _localChess.Move(move.move);
                 score = MiniMax(depth - 1, alpha, beta, false);
                 Debug.Log("#####   SCORE: " + score);
-                //_localChess = _localChess.UndoMove(move.move,move.figure);
+                _localChess = _localChess.UndoMove(move.move,move.figure);
 
                 if (score > alpha)
                 {
@@ -96,7 +96,7 @@ public class AI {
                 move.figure = (Figure)_localChess.GetFigureAt((move.move[3].ToString() + move.move[4].ToString()));
                 _localChess = _localChess.Move(move.move);
                 score = MiniMax(depth - 1, alpha, beta, true);
-                //_localChess = _localChess.UndoMove(move.move, move.figure);
+                _localChess = _localChess.UndoMove(move.move, move.figure);
                 Debug.Log("#####   SCORE: " + score);
 
                 if (score < beta)
@@ -112,7 +112,32 @@ public class AI {
             return beta;
         }
     }
+    /*
+    void _UndoFakeMove()
+    {
+        String tempMove = moveStack.Pop();
+        Tile movedTo = tempMove.secondPosition;
+        Tile movedFrom = tempMove.firstPosition;
+        Piece pieceKilled = tempMove.pieceKilled;
+        Piece pieceMoved = tempMove.pieceMoved;
 
+        movedFrom.CurrentPiece = movedTo.CurrentPiece;
+
+        if (pieceKilled != null)
+        {
+            movedTo.CurrentPiece = pieceKilled;
+        }
+        else
+        {
+            movedTo.CurrentPiece = null;
+        }
+    }
+
+    void _DoFakeMove(String move)
+    {
+        _localChess = _localChess.UndoMove(move);
+    }
+    */
 
 
 
@@ -209,4 +234,72 @@ public class AI {
         }
         return turnMove;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    public String GetRandomMove()
+    {
+        _moves = Main.chess.GetAllMoves();
+        System.Random rnd = new System.Random();
+        if (_moves.Count > 0) Main.chess.Move(_moves[rnd.Next(0, _moves.Count - 1)]);
+        return bestMove;
+    }
+    
+    public String GetBestMove()
+    {
+        _localChess = new Chess(Main.chess.fen);
+        _localBoard = new Board(_localChess.fen);
+        _moves = Main.chess.GetAllMoves();
+        bestMove = null;
+        int bestValue = -9999;
+        foreach(String move in _moves)
+        {
+            _localChess.Move(move);
+            int boardValue = -_Evaluate();
+            _localChess.UndoMove(move);
+
+            if(boardValue > bestValue)
+            {
+                bestValue = boardValue;
+                bestMove = move;
+            }
+        }
+        return bestMove;
+    }
+    */
+    
+    
+        
+    
+    /*
+    int EvaluateBoard()
+    {
+        int totalEvaluation = 0;
+
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++)
+                totalEvaluation = totalEvaluation + 
+                    Weights.GetPieceWeight((Figure)_localChess.GetFigureAt(i,j),new Square(i,j),_localChess.isWhiteStep());
+        return totalEvaluation;
+    }
+    */
+
+
+
+    
+
+
+
 }
