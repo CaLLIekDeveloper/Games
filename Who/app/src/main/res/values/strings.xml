@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Кто хочет стать миллионером</string>
+
+    <string-array name="lang_names">
+        <item>Русский</item>
+        <item>Украинский</item>
+        <item>English</item>
+    </string-array>
+    <string name="title_activity_end_game">EndGame</string>
+</resources>
