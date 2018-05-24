@@ -16,7 +16,6 @@ public class SettingsController : MonoBehaviour {
     public Sprite d3;
     public Sprite d4;
     SpriteRenderer tempSprite;
-    bool isChange = false;
 
 	void Start () {
         Debug.Log("LOL");

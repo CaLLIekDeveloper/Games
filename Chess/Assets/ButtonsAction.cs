@@ -75,8 +75,5 @@ public class ButtonsAction : MonoBehaviour
         //MainMenuController._Continue();
     }
 
-    public void _ExitFromAccount()
-    {
 
-    }
 }

@@ -119,7 +119,9 @@ namespace MyGame
             nextBoard = board.Move(fm);
             nextChess = new Chess(nextBoard);
 
+
             CheckIfMoveRemoveCastling(fm);
+
             if (fm.from != fm.to)
             {
                 if (fm.ToString() == "Ke1g1")
