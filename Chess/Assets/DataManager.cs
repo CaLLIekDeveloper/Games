@@ -26,7 +26,6 @@ public class DataManager
     }
     static void SetData()
     {
-        Debug.Log("Какого хуя" + data.playerDifficulty);
         MainStatic.Main.player.difficulty.skill 
             = data.playerDifficulty;
         MainStatic.Main.player.isWhite = data.playerIsWhite;
@@ -45,10 +44,22 @@ public class DataManager
         byte[] bytes = new byte[charsCount / 2];
         for (int i = 0; i < charsCount; i += 2) bytes[i / 2] = Convert.ToByte(json.Substring(i, 2), 16);
         string loadedData = Encoding.UTF8.GetString(bytes,0,bytes.Length);
-
-        data = JsonUtility.FromJson<data>(loadedData);
-        SetData();
+        SafeLoad(loadedData);
         return true;
+    }
+
+    private static void SafeLoad(string loadedData)
+    {
+        try
+        {
+            data = JsonUtility.FromJson<data>(loadedData);
+            SetData();
+        }
+        catch (Exception e)
+        {
+            Save();
+            Load();
+        }
     }
 
     public static bool Save()
@@ -108,8 +119,21 @@ public class Account
         for (int i = 0; i < charsCount; i += 2) bytes[i / 2] = Convert.ToByte(json.Substring(i, 2), 16);
         string loadedData = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
 
-        data = JsonUtility.FromJson<acc>(loadedData);
+        SafeLoad(loadedData);
         return true;
+    }
+
+    private static void SafeLoad(string loadedData)
+    {
+        try
+        {
+            data = JsonUtility.FromJson<acc>(loadedData);
+        }
+        catch (Exception e)
+        {
+            Save();
+            Load();
+        }
     }
 
     public static bool Save()
