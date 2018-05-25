@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -7,12 +10,10 @@ using System;
 using System.Text;
 using MainStatic;
 using System.Reflection;
-using UnityEngine;
 
-public class StockFish {
+public class StockFish : IDisposable {
 
-
-    public Process stockFish;
+    private Process stockFish;
     public StockFish()
     {
         //UnityEngine.Debug.Log("StartStockFish(): ");
@@ -36,6 +37,11 @@ public class StockFish {
         stockFish.StandardInput.WriteLine("null");
         StartNewGame();
     }
+    public void Dispose()
+    {
+        stockFish.Dispose();
+    }
+
     public void StartNewGame()
     {
         sendMessage("ucinewgame");
@@ -68,7 +74,7 @@ public class StockFish {
                 //UnityEngine.Debug.Log("needMove: " + needMove);
                 return needMove;
             }
-            if (temp == null) return null;
+            //if (temp == null) return null;
         }
     }
 

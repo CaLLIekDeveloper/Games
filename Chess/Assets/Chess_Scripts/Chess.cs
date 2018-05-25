@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -726,12 +729,6 @@ namespace MyGame
                             if (fm.to.y == 5)
                                 return true;
                         }
-                        if (fm.to.x == fmt.from.x)
-                        {
-
-                            if (fm.to.y == 5)
-                                return true;
-                        }
                     }
                 }
             }
@@ -754,12 +751,6 @@ namespace MyGame
                     {
                         if (fm.to.x == fmt.from.x)
                         {
-                            if (fm.to.y == 2)
-                                return true;
-                        }
-                        if (fm.to.x == fmt.from.x)
-                        {
-
                             if (fm.to.y == 2)
                                 return true;
                         }

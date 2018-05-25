@@ -19,3 +19,35 @@ Chess/Assets/Resources/Гість.json
 Chess/.vs/Chess/v15/Server/sqlite3/db.lock
 Chess/Assets/Resources/admin.json
 Chess/Assets/Resources/admin.json.meta
+
+
+# Visual Studio 2014 CTP
+**/*.sln.ide
+
+# Visual Studio temp something
+.vs/
+
+# dotnet stuff
+project.lock.json
+
+# VS 2015+
+*.vc.vc.opendb
+*.vc.db
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+# build folder is nowadays used for build scripts and should not be ignored
+#build/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates

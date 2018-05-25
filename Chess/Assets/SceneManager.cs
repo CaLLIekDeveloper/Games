@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MainStatic;
@@ -23,7 +25,7 @@ public class MySceneManager : MonoBehaviour {
     void OnApplicationQuit()
     {
         Debug.Log("Application ending after " + Time.time + " seconds");
-        Main.stockFish.stockFish.Close();
+        //Main.stockFish. stockFish.Close();
     }
 
     void OnEnable()
