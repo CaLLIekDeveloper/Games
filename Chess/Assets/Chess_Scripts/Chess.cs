@@ -135,49 +135,6 @@ namespace MyGame
             return nextChess;
         }
 
-
-        public Chess UndoMove(String move, Figure figure)
-        {
-            String tempMove = "" + move[0] + move[3] + move[4] + move[1] + move[2];
-            FigureMoving fm = new FigureMoving(tempMove);
-            Board nextBoard;
-            Chess nextChess;
-            nextBoard = board.Move(fm);
-            if (figure != Figure.none) nextBoard.SetFigureAt(fm.from, figure);
-            nextChess = new Chess(nextBoard);
-            /*
-            if (fm.from != fm.to)
-            {
-                if (fm.figure == Figure.whiteKing)
-                    Castling.isWhiteKingMoves = true;
-                if (fm.figure == Figure.blackKing)
-                    Castling.isBlackKingMoves = true;
-
-                if (fm.from == new Square(0, 0))
-                    Castling.isWhiteRookMoves1 = true;
-                if (fm.from == new Square(7, 0))
-                    Castling.isWhiteRookMoves2 = true;
-
-                if (fm.to == new Square(0, 0))
-                    Castling.isWhiteRookMoves1 = true;
-                if (fm.to == new Square(7, 0))
-                    Castling.isWhiteRookMoves2 = true;
-
-                if (fm.from == new Square(0, 7))
-                    Castling.isBlackRookMoves1 = true;
-                if (fm.from == new Square(7, 7))
-                    Castling.isBlackRookMoves2 = true;
-                if (fm.to == new Square(0, 7))
-                    Castling.isBlackRookMoves1 = true;
-                if (fm.to == new Square(7, 7))
-                    Castling.isBlackRookMoves2 = true;
-            }
-            */
-
-
-            return nextChess;
-        }
-
         public Figure GetFigureAt(Square temp)
         {
             Figure f = board.GetFigureAt(temp);
@@ -264,7 +221,6 @@ namespace MyGame
             InitFigures(parts[0]);
             moveColor = parts[1] == "b" ? Color.black : Color.white;
             moveNumber = int.Parse(parts[5]);
-            moveColor = Color.white;
         }
 
         void InitFigures(string data)

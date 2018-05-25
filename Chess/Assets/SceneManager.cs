@@ -72,7 +72,7 @@ public class MySceneManager : MonoBehaviour {
     {
         //Application.LoadLevel("WinScene");
     }
-    public static void SetMainScene()
+    public static void SetLoginScene()
     {
         SceneManager.LoadScene("Login_Scene");
     }

@@ -28,13 +28,12 @@ using UnityEngine.SceneManagement;
 public class Rules : MonoBehaviour
 {
     AI ai = new AI();
-    bool blackIsAI = true;
-    bool firstStepAi = true;
     public static AudioClip soundStep;
     public static AudioSource audio;
 
     static InputField log;
 
+    private bool IsWhitePlayerTemp;
     private void Init()
     {
         Main.dragAndDrop = new DragAndDrop();
@@ -46,7 +45,7 @@ public class Rules : MonoBehaviour
         Main.chess.FindAllMoves();
         Main.scriptBoard.ShowFigures(Main.chess);
         log.text = "";
-        firstStepAi = false;
+        IsWhitePlayerTemp = Main.player.isWhite;
     }
 
     private void Awake()
@@ -61,26 +60,22 @@ public class Rules : MonoBehaviour
         Main.chess = new Chess(fen);
         Main.chess.FindAllMoves();
         Main.scriptBoard.ShowFigures(Main.chess);
+        IsWhitePlayerTemp = bool.Parse(PlayerPrefs.GetString("PlayerIsWhite"));
     }
 
-    // Use this for initialization
     void Start()
     {
-        Debug.Log("Rules.Start()");
         Init();
         if(MainMenuController.IsContinue)
         {
             _ContinueGame(PlayerPrefs.GetString("SaveGame"));
             MainMenuController.IsContinue = false;
         }
-        audio = GetComponent<AudioSource>();
-        /*
-        Debug.Log("Main.typeGame: " +  Main.typeGame);
-        Debug.Log("Main.player.isWhite : " + Main.player.isWhite);
-        Debug.Log("firstStepAi : " + firstStepAi);
-        */
 
-        if (Main.player.typeGame==1 && !Main.player.isWhite)
+        audio = GetComponent<AudioSource>();
+
+
+        if (Main.player.typeGame==1 && !IsWhitePlayerTemp)
         {
             string stockFishMove = Main.stockFish.GetBestMove();
             Main.chess = Main.chess.Move("" + (Char)Main.chess.GetFigureAt(stockFishMove[0].ToString() + stockFishMove[1].ToString()) + stockFishMove);
@@ -139,7 +134,7 @@ public class Rules : MonoBehaviour
 
     private void ComputerMove(string from, string to)
     {
-        if (Main.player.typeGame == 1 && (Main.player.isWhite == !Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
+        if (Main.player.typeGame == 1 && (IsWhitePlayerTemp == !Main.chess.isWhiteStep()))// blackIsAI && !Main.chess.isWhiteStep())
         {
             Main.chess.FindAllMoves();
             SheckEndGame();
@@ -172,10 +167,10 @@ public class Rules : MonoBehaviour
     {
         if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity == 0)
         {
-            Debug.Log("isWhite: "+ Main.player.isWhite);
+            Debug.Log("isWhite: "+ IsWhitePlayerTemp);
             Debug.Log("Main.chess.isWhiteStep(): " + Main.chess.isWhiteStep());
 
-            if (Main.player.isWhite)
+            if (IsWhitePlayerTemp)
             {
                 if (Main.chess.isWhiteStep())
                 {

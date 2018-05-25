@@ -57,12 +57,15 @@ public class ButtonsAction : MonoBehaviour
             PlayerPrefs.SetInt("isSave", 1);
             PlayerPrefs.SetString("SaveGame", MainStatic.Main.chess.fen);
             PlayerPrefs.SetInt("TypeGame", MainStatic.Main.player.typeGame);
+            if (PlayerPrefs.GetString("PlayerIsWhite").Equals(MainStatic.Main.player.isWhite.ToString()) || PlayerPrefs.GetString("PlayerIsWhite").Equals(""))
+            PlayerPrefs.SetString("PlayerIsWhite", MainStatic.Main.player.isWhite.ToString());
             PlayerPrefs.Save();
         }else
         {
             PlayerPrefs.SetInt("isSave", 0);
             PlayerPrefs.SetString("SaveGame", "");
             PlayerPrefs.SetInt("TypeGame", 0);
+            PlayerPrefs.SetString("PlayerIsWhite", "");
             PlayerPrefs.Save();
         }
     }
