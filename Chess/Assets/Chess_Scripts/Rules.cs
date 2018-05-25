@@ -167,6 +167,7 @@ public class Rules : MonoBehaviour
     {
         if (Main.chess.IsCheck() && Main.chess.GetAllMoves().Capacity == 0)
         {
+            Main.CountSteps = Main.chess.GetMoveNumber();
             Debug.Log("isWhite: "+ IsWhitePlayerTemp);
             Debug.Log("Main.chess.isWhiteStep(): " + Main.chess.isWhiteStep());
 

@@ -34,7 +34,10 @@ namespace MyGame
             moves = new Moves(board);
         }
 
-
+        public int GetMoveNumber()
+        {
+            return board.moveNumber;
+        }
         public Chess Move(String move)
         {
             FigureMoving fm = new FigureMoving(move);
