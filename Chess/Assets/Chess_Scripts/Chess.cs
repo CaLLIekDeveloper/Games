@@ -186,7 +186,10 @@ namespace MyGame
 
         public List<string> GetAllMoves()
         {
-            return allMovesString;
+            if (allMovesString != null)
+                return allMovesString;
+            else
+                return new List<string>();
         }
 
         public bool IsCheck()

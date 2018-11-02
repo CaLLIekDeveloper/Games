@@ -38,7 +38,7 @@ public class LoginController : MonoBehaviour
     void Start()
     {
         MainStatic.Main.player = new Player();
-        //Screen.SetResolution(876,532,false);
+        Screen.SetResolution(876,532,false);
 
         bGuest = GameObject.Find("bGuest").GetComponent<Button>();
         bEnter = GameObject.Find("bEnter").GetComponent<Button>();

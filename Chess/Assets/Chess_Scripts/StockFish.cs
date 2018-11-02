@@ -17,10 +17,10 @@ public class StockFish : IDisposable {
     public StockFish()
     {
         //UnityEngine.Debug.Log("StartStockFish(): ");
-        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "stockfish_9_x64.exe");
+        string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "stockfish_9_x32.exe");
         //UnityEngine.Debug.Log("StartStockFish(): "+Environment.CurrentDirectory);
 #if UNITY_EDITOR
-        filePath = Environment.CurrentDirectory+@"\Assets\StreamingAssets\stockfish_9_x64.exe";
+        filePath = Environment.CurrentDirectory+@"\Assets\StreamingAssets\stockfish_9_x32.exe";
 #endif
         stockFish = new Process
         {

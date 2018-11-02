@@ -101,7 +101,7 @@ public class Rules : MonoBehaviour
             Main.chess = Main.chess.Move(move);
 
 
-            AddMoveInLog(from, to);
+            AddMoveInLog(from, to, move);
             if (from != to && Main.previousMove != move)
             {
                 Main.previousMove = move;
@@ -110,12 +110,12 @@ public class Rules : MonoBehaviour
             Main.scriptBoard.ShowFigures(Main.chess);
             ComputerMove(from,to);
             SheckEndGame();
-
         }
     }
 
-    private void AddMoveInLog(string from, string to)
+    private void AddMoveInLog(string from, string to, string move)
     {
+        //Debug.Log("Содержит ли: "+move+ "    "+ MainStatic.Main.chess.GetAllMoves().Contains(move));
         if (from != to)
         {
             if (Main.player.typeGame == 1)

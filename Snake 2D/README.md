@@ -1,6 +1,4 @@
-# TicTacToe
-Крестики нолики с возможностью выбора игры против второго человека и
-против компьютера который случайно ходит
+# Snake 2D
 
 Author  : Parshin Alexander<br>
 e-mail  : parshin2010sashek@gmail.com<br>
