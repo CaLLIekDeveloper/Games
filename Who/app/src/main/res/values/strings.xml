@@ -6,5 +6,6 @@
         <item>Украинский</item>
         <item>English</item>
     </string-array>
+
     <string name="title_activity_end_game">EndGame</string>
 </resources>
