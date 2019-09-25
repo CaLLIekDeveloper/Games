@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.yoga">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.HighscoresActivity"
+            android:orientation="horizontal"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_highscores"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:orientation="horizontal"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_settings"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.EndGameActivity" android:noHistory="true"
+            android:orientation="horizontal"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_end_game"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.GameActivity" android:noHistory="true"
+            android:orientation="horizontal"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_game"
+            android:configChanges="locale"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="locale"
+            android:orientation="horizontal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

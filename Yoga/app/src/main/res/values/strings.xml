@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Йога</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_game">Игра</string>
+    <string name="title_activity_end_game">Конец игры</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_highscores">Рекорды</string>
+    <string name="New_Game">Новая игра</string>
+    <string name="Exit">Выход</string>
+    <string name="Time_Game">Время игры</string>
+    <string name="Language">Язык</string>
+    <string name="MainMenu">Главное меню</string>
+    <string name="RestartGame">Начать заново</string>
+
+    <string-array name="lang_names">
+        <item>Русский</item>
+        <item>English</item>
+    </string-array>
+
+    <string name="TimeBeforeEnd">Осталось времени:</string>
+    <string name="Moves">Ход:</string>
+    <string name="countMoves">Количество ходов:</string>
+    <string name="FullTime">Время на игру:</string>
+    <string name="neededTime">Затраченное время:</string>
+    <string name="SaveResult">Сохранить результат</string>
+    <string name="YourName">Введите ваше имя</string>
+    <string name="Name">Имя</string>
+    <string name="Date">Дата:</string>
+    <string name="CountChips">Убрано фишек:</string>
+
+    <string name="LangTitle">Язык</string>
+    <string name="LangDialogTitle">Выберите язык:</string>
+    <string name="LangSummary">Язык приложения.\nНеобходимо перезапустить приложение для принятия изменений.</string>
+
+    <string-array name="entries_lang">
+        <item>Язык аппарата</item>
+        <item>Английский</item>
+        <item>Русский</item>
+    </string-array>
+    <string-array name="entryvalues_lang">
+        <item>default</item>
+        <item>en</item>
+        <item>ru</item>
+    </string-array>
+    <string name="NoRecords">Рекордов еще не установлено. Вы можете стать первым!</string>
+</resources>

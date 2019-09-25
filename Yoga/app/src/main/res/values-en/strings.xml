@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yoga</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_end_game">End Game</string>
+    <string name="title_activity_game">Game</string>
+    <string name="title_activity_highscores">Highscores</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="New_Game">New Game</string>
+    <string name="Exit">Exit</string>
+    <string name="Time_Game">Time of Game</string>
+    <string name="Language">Language</string>
+    <string name="MainMenu">Main Menu</string>
+    <string name="RestartGame">Restart</string>
+    <string name="TimeBeforeEnd">Time left:</string>
+    <string name="Moves">Move:</string>
+    <string name="countMoves">Number of moves:</string>
+    <string name="FullTime">Full time:</string>
+    <string name="neededTime">Time spent:</string>
+    <string name="SaveResult">Save result</string>
+    <string name="YourName">Enter yout name</string>
+    <string name="Name">Name</string>
+    <string name="Date">Date:</string>
+    <string name="CountChips">Chips removed:</string>
+    <string name="LangTitle">Language</string>
+    <string name="LangDialogTitle">Choose Language</string>
+    <string name="LangSummary">App Language</string>
+    <string name="NoRecords">No records have been set yet. You can be the first!</string>
+</resources>
