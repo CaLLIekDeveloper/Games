@@ -1,12 +1,18 @@
-# Yoga
-Йога
+# Yoga v0.1
+Логическая игра йога для Android.
 
-<<<<<<< HEAD
-![Image alt](https://github.com/CaLLIekDeveloper/Games/Yoga/master/screenshots/1.png)
-=======
-![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/screenshots/1.png)
->>>>>>> dd20f92f985d4cac913e4ddb5de7b98347a162b9
+Правила:
+Ходить можно перешагивая через одну или несколько фишек, но не по диагонали.<br>
+Фишка, через которую перешагнули, считается битой и снимается. <br>
+Игра заканчивается, когда больше нельзя бить фишки. <br>
+Чем меньше осталось фишек, тем лучше считается результат, то есть цель игры оставить на поле единственную.<br>
 
+<p align="center">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/1.jpg" width="220" title="Main menu">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/2.jpg" width="220" title="Game">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/3.jpg" width="220" title="End game">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/4.jpg" width="220" title="Highscores">
+</p>
 
 Author  : Parshin Alexander<br>
 e-mail  : parshin2010sashek@gmail.com<br>
