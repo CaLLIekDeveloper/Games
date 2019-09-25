@@ -3,9 +3,9 @@
 
 ![Иллюстрация к проекту](https://github.com/jon/coolproject/raw/master/image/image.png)
 
-![Image alt](https://github.com/CaLLIekDeveloper/Games/Yoga/master/screenshots/1.png)
+![Image alt](https://github.com/CaLLIekDeveloper/Games/Yoga/master/screenshots/1.jpg)
 
-![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/screenshots/1.png)
+![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/screenshots/1.jpg)
 
 
 Author  : Parshin Alexander<br>
