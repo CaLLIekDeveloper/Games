@@ -5,7 +5,7 @@
 
 ![Image alt](https://github.com/CaLLIekDeveloper/Games/Yoga/master/screenshots/1.jpg)
 
-![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/screenshots/1.jpg)
+![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/1.jpg)
 
 
 Author  : Parshin Alexander<br>
