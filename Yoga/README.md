@@ -1,11 +1,9 @@
 # Yoga
 Йога
 
-<<<<<<< HEAD
 ![Image alt](https://github.com/CaLLIekDeveloper/Games/Yoga/master/screenshots/1.png)
-=======
+
 ![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/screenshots/1.png)
->>>>>>> dd20f92f985d4cac913e4ddb5de7b98347a162b9
 
 
 Author  : Parshin Alexander<br>
