@@ -2,12 +2,11 @@
 Йога
 
 <p align="center">
-  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/1.jpg" width="250" title="hover text">
-  <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/1.jpg" width="250" title="Main menu">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/2.jpg" width="250" title="Game">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/3.jpg" width="250" title="End game">
+  <img src="https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/4.jpg" width="250" title="Highscores">
 </p>
-
-![Image alt](https://github.com/CaLLIekDeveloper/Games/raw/master/Yoga/screenshots/1.jpg)
-
 
 Author  : Parshin Alexander<br>
 e-mail  : parshin2010sashek@gmail.com<br>
